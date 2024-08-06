@@ -28,7 +28,7 @@ input logic signed [7:0] i_b,
 
 output logic [7:0] o_x,
 output logic [7:0] o_y,
-output logic [15:0] o_out
+output logic signed [15:0] o_out
 );
 
 logic [7:0] x_d;
@@ -44,7 +44,7 @@ end
 
 // mac op
 always_comb begin
-    out_d = $signed(i_a)*$signed(i_b) + o_out;
+    out_d = i_a*i_b + o_out;
 end
 
 always @(posedge i_clk) begin
