@@ -48,7 +48,7 @@ logic [7:0] b12_buffer;
 logic [7:0] b13_buffer1, b13_buffer2;
 
 // logic for buffer registers
-always_ff @(posedge clk, negedge rst) begin
+always_ff @(posedge clk) begin
     if (!rst) begin
         a21_buffer <= 0;
         a31_buffer1 <= 0;
