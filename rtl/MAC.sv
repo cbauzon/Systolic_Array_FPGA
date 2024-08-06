@@ -21,14 +21,14 @@
 
 
 module MAC(
-input clk,
-input rst,
-input logic signed [7:0] a,
-input logic signed [7:0] b,
+input i_clk,
+input i_rst_n,
+input logic signed [7:0] i_a,
+input logic signed [7:0] i_b,
 
-output logic [7:0] x,
-output logic [7:0] y,
-output logic [15:0] out
+output logic [7:0] o_x,
+output logic [7:0] o_y,
+output logic [15:0] o_out
 );
 
 logic [7:0] x_d;
@@ -37,24 +37,25 @@ logic [15:0] out_d;
 
 // pass on a and b
 always_comb begin
-    x_d = a;
-    y_d = b;
+    x_d = i_a;
+    y_d = i_b;
+        
 end
 
 // mac op
 always_comb begin
-    out_d = $signed(a)*$signed(b) + out;
+    out_d = $signed(i_a)*$signed(i_b) + o_out;
 end
 
-always @(posedge clk, negedge rst) begin
-    if (!rst) begin
-        x <= 0;
-        y <= 0;
-        out <= 0;
+always @(posedge i_clk) begin
+    if (!i_rst_n) begin
+        o_x <= 0;
+        o_y <= 0;
+        o_out <= 0;
     end else begin
-        x <= x_d;
-        y <= y_d;
-        out <= out_d;
+        o_x <= x_d;
+        o_y <= y_d;
+        o_out <= out_d;
     end
 end
 endmodule
