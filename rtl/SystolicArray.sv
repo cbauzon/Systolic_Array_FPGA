@@ -30,8 +30,8 @@ output logic o_C_valid
 );
 
 // counts transactions to know when operation is done
-logic [3:0] transaction_count;
-assign o_C_valid = transaction_count == 7 ? 1 : 0;
+logic [3:0] transaction_cnt;
+assign o_C_valid = (transaction_cnt == 7) ? 1 : 0;
 
 logic [7:0] A11;
 logic [7:0] A21;
@@ -88,7 +88,7 @@ end
 
 
 
-MAC mac11 (i_clk, i_rst_n, A11, B11, a11_12, b11_21, o_C[15:0], transaction_count);
+MAC mac11 (i_clk, i_rst_n, A11, B11, a11_12, b11_21, o_C[15:0], transaction_cnt);
 MAC mac12 (i_clk, i_rst_n, a11_12, b12_buffer, a12_13, b12_22, o_C[31:16]);
 MAC mac13 (i_clk, i_rst_n, a12_13, b13_buffer2, , b13_23, o_C[47:32]);
 
