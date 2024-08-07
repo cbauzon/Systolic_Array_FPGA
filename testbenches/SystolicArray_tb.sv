@@ -23,21 +23,21 @@
 module SystolicArray_tb();
 
 logic clk, rst;
+logic [23:0] A, B;
 logic [7:0] A11, A21, A31,
             B11, B12, B13;
 
 logic [143:0] C;
 
+assign A = {A31, A21, A11};
+assign B = {B13, B12, B11};
+
 // dut instantiation
 SystolicArray dut(
     clk,
     rst,
-    A11,
-    A21,
-    A31,
-    B11,
-    B12,
-    B13,
+    A,
+    B,
     C
 );
 
