@@ -28,6 +28,7 @@ logic [7:0] A11, A21, A31,
             B11, B12, B13;
 
 logic [143:0] C;
+logic valid;
 
 assign A = {A31, A21, A11};
 assign B = {B13, B12, B11};
@@ -38,7 +39,8 @@ SystolicArray dut(
     rst,
     A,
     B,
-    C
+    C,
+    valid
 );
 
 initial begin
@@ -70,7 +72,7 @@ initial begin
     A11 = 0;    A21 = 0;    A31 = 0;
     B11 = 0;    B12 = 0;    B13 = 0;
     
-    #90;
+    @(valid == 1);
     for (i=0; i<9; ++i) begin
         $display("C[%0d]: %d", i+1, C[i*16+:16]);
     end
