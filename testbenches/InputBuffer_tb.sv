@@ -9,6 +9,7 @@ logic i_rd, i_wr;
 logic [DATA_WIDTH-1:0] i_wr_data;
 
 logic [DATA_WIDTH-1:0] o_data;
+logic o_is_empty, o_is_full;
 
 InputBuffer #(DATA_WIDTH, ADDR_WIDTH) dut(
     i_clk,
@@ -16,7 +17,9 @@ InputBuffer #(DATA_WIDTH, ADDR_WIDTH) dut(
     i_rd,
     i_wr,
     i_wr_data,
-    o_data
+    o_data,
+    o_is_empty,
+    o_is_full
 );
 
 initial begin
@@ -33,6 +36,8 @@ initial begin
     write_data('h11_1111);
     write_data('h22_2222);
     write_data('h33_3333);
+    
+
     @(negedge i_clk)
     i_wr = 0;
 
@@ -41,6 +46,10 @@ initial begin
     
     do_rst(5);
     read_data_n_times(5);
+    write_data('h55_5555);
+    @(negedge i_clk)
+    i_wr = 0;
+    $finish;
 
 end
 
