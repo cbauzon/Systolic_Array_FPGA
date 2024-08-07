@@ -3,7 +3,7 @@ module InputBuffer #(DATA_WIDTH=24, ADDR_WIDTH=2)(
     input i_rd, i_wr,
     input [DATA_WIDTH-1:0] i_wr_data,
 
-    output [DATA_WIDTH-1:0] o_data
+    output logic [DATA_WIDTH-1:0] o_data
 );
 
 // create memory with (2**ADDR_WIDTH) x DATA_WIDTH space
@@ -14,14 +14,15 @@ logic [ADDR_WIDTH-1:0] rd_pntr, wr_pntr;
 
 integer i;
 
-always_ff (posedge i_clk) begin
+always_ff @(posedge i_clk) begin
     if (!i_rst_n) begin
-        for (i=0; i<(2**ADDR_WIDTH)-1; ++i) begin
+        for (i=0; i<(2**ADDR_WIDTH); ++i) begin
             mem[i] <= 0;
         end
 
         rd_pntr <= 0;
         wr_pntr <= 0;
+        o_data <= 0;
     end
     else begin 
         if (i_rd && !i_wr) begin
