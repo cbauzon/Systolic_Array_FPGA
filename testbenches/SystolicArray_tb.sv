@@ -81,10 +81,10 @@ initial begin
     @(posedge clk)
     rst = 0;
     
-    drive_inputs(1, 1, 4, 7, 9, 8, 7);
-    drive_inputs(0, 2, 5, 8, 6, 5, 4);
-    drive_inputs(0, 3, 6, 9, 3, 2, 1);
-    drive_inputs(0, 0, 0, 0, 0, 0, 0);
+    drive_inputs(1, 4, 7, 9, 8, 7);
+    drive_inputs(2, 5, 8, 6, 5, 4);
+    drive_inputs(3, 6, 9, 3, 2, 1);
+    drive_inputs(0, 0, 0, 0, 0, 0);
 
     @(valid == 1);
     for (i=0; i<9; ++i) begin
@@ -94,10 +94,9 @@ initial begin
 
 end
 
-task drive_inputs(input rst_on, input logic [23:0] in1, in2, in3, in4, in5, in6);
+task drive_inputs(input logic [23:0] in1, in2, in3, in4, in5, in6);
     @(negedge clk)
-    if (rst_on) rst = 1;
-    else rst = 0;
+    rst = 1;
     A11 = in1;    A21 = in2;    A31 = in3;
     B11 = in4;    B12 = in5;    B13 = in6;
 
