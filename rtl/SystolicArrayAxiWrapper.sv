@@ -2,7 +2,7 @@
     AXI DMA.
 */
 
-module SystolicArrayWrapper(
+module SystolicArrayAxiWrapper(
     input axi_clk,
     input axi_clk_n,
 
