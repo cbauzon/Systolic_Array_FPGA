@@ -1,47 +1,24 @@
 module ArrayController(
-    input i_clk,
-    input i_rst_n,
+    input logic i_clk,
+    input logic i_rst_n,
 
-    // Slave interface
-    input s_axis_valid,
-    output s_axis_ready,
+    // AXIS Slave interface
+    input logic s_axis_valid,
+    output logic s_axis_ready,
 
-    // Master interface
-    output m_axis_valid,
-    input m_axis_ready
-);
+    // AXIS Master interface
+    input logic m_axis_ready,
+    output logic m_axis_valid,
 
-/* BUFFERS */
-parameter DATA_WIDTH=24;
-logic buff_rst_n
-logic buff_rd, buff_wr; // both data for a and b buffers come in at same time
+    // Buffer interface
+    input logic o_is_empty, o_is_full,
+    output logic buff_rst_n,
+    output logic buff_rd, buff_wr,
 
-// buffer for A matrix
-logic [DATA_WIDTH-1:0] buff_wr_data_a, o_data_a;
-logic o_is_empty_a, o_is_full_a;
-InputBuffer A_Buffer (
-    i_clk, 
-    buff_rst_n,
-    buff_rd, 
-    buff_wr, 
-    buff_wr_data_a, 
-    o_data_a, 
-    o_is_empty_a, 
-    o_is_full_a
-);
+    // Array interface
+    input logic arr_C_valid,
+    output logic arr_rst_n
 
-// buffer for B matrix
-logic [DATA_WIDTH-1:0] buff_wr_data_b, o_data_b;
-logic o_is_empty_b, o_is_full_b;
-InputBuffer A_Buffer (
-    i_clk, 
-    buff_rst_n,
-    buff_rd, 
-    buff_wr, 
-    buff_wr_data_b, 
-    o_data_b, 
-    o_is_empty_b, 
-    o_is_full_b
 );
 
 
@@ -53,20 +30,78 @@ logic [1:0] PS, NS;
 // sequential FSM logic
 always_ff @(posedge i_clk) begin
     if (!i_rst_n) begin
-        PS <= IDLE;
+        PS <= WAIT;
     end
     else begin
         PS <= NS;
     end
 end
 
-// NS Decoder
+// NS and Out Decoder
 always_comb begin
-    
+    m_axis_valid = 0;
+    buff_rst_n = 1;
+    buff_rd = 0;
+    buff_wr = 0;
+    arr_rst_n = 1;
+
+    case (PS)
+        WAIT: begin
+            buff_rst_n = 0;
+            arr_rst_n = 0;
+
+            if (s_axis_valid && s_axis_ready) begin
+                buff_wr = 1;
+                NS = FILL;
+            end
+            else NS = WAIT;
+        end
+
+        FILL: begin
+            if (!buff_is_full && s_axis_valid) begin
+                buff_wr = 1;
+                NS = FILL;
+            end
+            else if (buff_is_full) begin
+                NS = PROCESS;
+            end
+            else begin
+                NS = WAIT;
+            end
+
+            buff_wr = 0;
+
+        end
+
+        PROCESS: begin
+            buff_rd = 1;
+
+            if (!arr_C_valid) begin
+                NS = PROCESS;
+            end
+            else begin
+                buff_rd = 0;
+                NS = OUT;
+            end        
+        end
+
+        OUT: begin
+            m_axis_valid = 1;
+            buff_rd = 0;
+
+            if (!m_axis_ready) begin
+                NS = OUT;
+            end
+            else begin
+                NS = WAIT;
+            end
+        end
+
+    endcase
 end
 
 
-
+assign s_axis_ready = !buff_is_full;   // memory ready to take data when it is not full
 
 
 endmodule

@@ -25,6 +25,7 @@ input logic i_clk,
 input logic i_rst_n,
 input logic [23:0] i_A,
 input logic [23:0] i_B,
+
 output logic [143:0] o_C,
 output logic o_C_valid
 );
