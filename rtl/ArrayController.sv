@@ -11,7 +11,7 @@ module ArrayController(
     output logic m_axis_valid,
 
     // Buffer interface
-    input logic o_is_empty, o_is_full,
+    input logic buff_is_empty, buff_is_full,
     output logic buff_rst_n,
     output logic buff_rd, buff_wr,
 
@@ -50,7 +50,7 @@ always_comb begin
             buff_rst_n = 0;
             arr_rst_n = 0;
 
-            if (s_axis_valid && s_axis_ready) begin
+            if (s_axis_valid && !buff_is_full) begin
                 buff_wr = 1;
                 NS = FILL;
             end
@@ -74,15 +74,19 @@ always_comb begin
         end
 
         PROCESS: begin
-            buff_rd = 1;
 
-            if (!arr_C_valid) begin
+            if (!arr_C_valid && !buff_is_empty) begin
+                buff_rd = 1;
+                NS = PROCESS;
+            end
+            else if (!arr_C_valid) begin
                 NS = PROCESS;
             end
             else begin
-                buff_rd = 0;
                 NS = OUT;
             end        
+            buff_rd = 0;
+            
         end
 
         OUT: begin
@@ -96,6 +100,8 @@ always_comb begin
                 NS = WAIT;
             end
         end
+
+        default: NS = WAIT;
 
     endcase
 end
