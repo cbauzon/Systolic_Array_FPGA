@@ -847,7 +847,8 @@
                                 "nets": [
                                     {
                                         "name": "design_1_i/system_ila_0/inst/net_slot_2_axis_tvalid",
-                                        "isBus": false
+                                        "isBus": false,
+                                        "parentNetId": 220
                                     }
                                 ]
                             },
@@ -1264,6 +1265,35 @@
                                             "leftBit": 0,
                                             "width": 1
                                         }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "parent_nets": [
+                    {
+                        "id": 220,
+                        "name": "design_1_i/SystolicArrayAxiWrap_0/inst/Controller/Q[3]",
+                        "state_reg": [
+                            {
+                                "name": "design_1_i/SystolicArrayAxiWrap_0/inst/Controller/FSM_onehot_PS_reg[3]",
+                                "states": [
+                                    {
+                                        "name": "FILL",
+                                        "val": "0010"
+                                    },
+                                    {
+                                        "name": "PROCESS",
+                                        "val": "0100"
+                                    },
+                                    {
+                                        "name": "WAIT",
+                                        "val": "0001"
+                                    },
+                                    {
+                                        "name": "OUT",
+                                        "val": "1000"
                                     }
                                 ]
                             }

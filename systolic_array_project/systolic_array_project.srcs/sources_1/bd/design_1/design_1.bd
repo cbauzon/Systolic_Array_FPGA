@@ -2976,10 +2976,10 @@
           "axi_mem_intercon/M00_ACLK",
           "axi_mem_intercon/ACLK",
           "axi_mem_intercon/S01_ACLK",
-          "SystolicArrayAxiWrap_0/axi_clk",
           "system_ila_0/clk",
           "processing_system7_0/S_AXI_HP0_ACLK",
-          "axis_dwidth_converter_1/aclk"
+          "axis_dwidth_converter_1/aclk",
+          "SystolicArrayAxiWrap_0/axi_clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -3000,9 +3000,9 @@
           "axi_mem_intercon/M00_ARESETN",
           "axi_mem_intercon/ARESETN",
           "axi_mem_intercon/S01_ARESETN",
-          "SystolicArrayAxiWrap_0/axi_rst_n",
           "system_ila_0/resetn",
-          "axis_dwidth_converter_1/aresetn"
+          "axis_dwidth_converter_1/aresetn",
+          "SystolicArrayAxiWrap_0/axi_rst_n"
         ]
       }
     },

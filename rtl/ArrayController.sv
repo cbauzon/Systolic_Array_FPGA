@@ -71,7 +71,7 @@ always_comb begin
             end
             else begin
                 buff_wr = 0;
-                NS = WAIT;
+                NS = FILL;
             end
 
 

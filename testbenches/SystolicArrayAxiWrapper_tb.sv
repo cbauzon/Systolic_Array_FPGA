@@ -59,22 +59,26 @@ module SystolicArrayAxiWrapper_tb();
 
         // dma to device
         s_axis_valid = 1;
-        s_axis_data = {8'd3, 8'd2, 8'd1, 8'd7, 8'd4, 8'd1};
-        m_axis_ready = 0;
-
-        @(negedge axi_clk)
-        s_axis_valid = 1;
-        s_axis_data = {8'd6, 8'd5, 8'd4, 8'd8, 8'd5, 8'd2};
-        m_axis_ready = 0;
-
-        @(negedge axi_clk)
-        s_axis_valid = 1;
-        s_axis_data = {8'd9, 8'd8, 8'd7, 8'd9, 8'd6, 8'd3};
-        m_axis_ready = 0;
-
-        @(negedge axi_clk)
+        s_axis_data = {8'd6, 8'd5, 8'd4, 8'd3, 8'd2, 8'd1};
+        m_axis_ready = 1;
+        @(posedge axi_clk)
         s_axis_valid = 0;
-        s_axis_data = 'h0;
+
+        @(negedge axi_clk)
+        @(negedge axi_clk)
+        @(negedge axi_clk)
+        s_axis_valid = 1;
+        s_axis_data = {8'd12, 8'd11, 8'd10, 8'd8, 8'd5, 8'd2};
+        @(posedge axi_clk)
+        s_axis_valid = 0;
+
+        @(negedge axi_clk)
+        @(negedge axi_clk)
+        @(negedge axi_clk)
+        s_axis_valid = 1;
+        s_axis_data = {8'd7, 8'd8, 8'd9, 8'd10, 8'd11, 8'd12};
+        @(posedge axi_clk)
+        s_axis_valid = 0;
         
         @(m_axis_valid == 1);
         for (i=0; i<9; ++i) begin

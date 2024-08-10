@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
-// Date        : Fri Aug  9 18:44:39 2024
+// Date        : Sat Aug 10 01:45:15 2024
 // Host        : cj-ubuntu-desktop running 64-bit Ubuntu 24.04 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/cj/vivado_projects/systolic_array/systolic_array_project/systolic_array_project.gen/sources_1/bd/design_1/ip/design_1_SystolicArrayAxiWrap_0_0/design_1_SystolicArrayAxiWrap_0_0_sim_netlist.v
@@ -56,129 +56,192 @@ endmodule
 
 (* ORIG_REF_NAME = "ArrayController" *) 
 module design_1_SystolicArrayAxiWrap_0_0_ArrayController
-   (PS,
+   (p_0_in,
+    Q,
     SR,
-    p_0_in,
-    m_axis_valid,
-    axi_clk,
-    \FSM_sequential_PS_reg[0]_0 ,
-    \o_out_reg[0] ,
+    s_axis_valid_0,
+    \FSM_onehot_PS_reg[1]_0 ,
+    \wr_pntr_reg[1] ,
+    D,
+    s_axis_valid,
     m_axis_ready,
+    \mem_reg[0][23] ,
     axi_rst_n,
-    s_axis_valid);
-  output [1:0]PS;
-  output [0:0]SR;
+    axi_clk);
   output p_0_in;
-  output m_axis_valid;
-  input axi_clk;
-  input \FSM_sequential_PS_reg[0]_0 ;
-  input \o_out_reg[0] ;
-  input m_axis_ready;
-  input axi_rst_n;
+  output [3:0]Q;
+  output [0:0]SR;
+  output [0:0]s_axis_valid_0;
+  output [0:0]\FSM_onehot_PS_reg[1]_0 ;
+  input \wr_pntr_reg[1] ;
+  input [1:0]D;
   input s_axis_valid;
+  input m_axis_ready;
+  input [1:0]\mem_reg[0][23] ;
+  input axi_rst_n;
+  input axi_clk;
 
-  wire \FSM_sequential_PS[1]_i_1_n_0 ;
-  wire \FSM_sequential_PS_reg[0]_0 ;
-  wire [1:0]PS;
+  wire [1:0]D;
+  wire \FSM_onehot_PS[3]_i_1_n_0 ;
+  wire [0:0]\FSM_onehot_PS_reg[1]_0 ;
+  wire [1:0]NS;
+  wire [3:0]Q;
   wire [0:0]SR;
   wire axi_clk;
   wire axi_rst_n;
   wire m_axis_ready;
-  wire m_axis_valid;
-  wire \o_out_reg[0] ;
+  wire [1:0]\mem_reg[0][23] ;
   wire p_0_in;
+  wire \rd_pntr[1]_i_4_n_0 ;
   wire s_axis_valid;
+  wire [0:0]s_axis_valid_0;
+  wire \wr_pntr_reg[1] ;
 
   (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT5 #(
-    .INIT(32'h34F40000)) 
-    \FSM_sequential_PS[1]_i_1 
-       (.I0(\o_out_reg[0] ),
-        .I1(PS[0]),
-        .I2(PS[1]),
-        .I3(m_axis_ready),
-        .I4(axi_rst_n),
-        .O(\FSM_sequential_PS[1]_i_1_n_0 ));
-  (* FSM_ENCODED_STATES = "FILL:01,PROCESS:10,WAIT:00,OUT:11" *) 
-  FDRE \FSM_sequential_PS_reg[0] 
-       (.C(axi_clk),
-        .CE(1'b1),
-        .D(\FSM_sequential_PS_reg[0]_0 ),
-        .Q(PS[0]),
-        .R(1'b0));
-  (* FSM_ENCODED_STATES = "FILL:01,PROCESS:10,WAIT:00,OUT:11" *) 
-  FDRE \FSM_sequential_PS_reg[1] 
-       (.C(axi_clk),
-        .CE(1'b1),
-        .D(\FSM_sequential_PS[1]_i_1_n_0 ),
-        .Q(PS[1]),
-        .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    m_axis_valid_INST_0
-       (.I0(PS[1]),
-        .I1(PS[0]),
-        .O(m_axis_valid));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
-  LUT3 #(
-    .INIT(8'h07)) 
-    \o_out[15]_i_1 
-       (.I0(\o_out_reg[0] ),
-        .I1(PS[0]),
-        .I2(PS[1]),
-        .O(p_0_in));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
-  LUT5 #(
-    .INIT(32'h80858585)) 
-    \rd_pntr[1]_i_1 
-       (.I0(PS[0]),
+    .INIT(32'h8FFF8888)) 
+    \FSM_onehot_PS[0]_i_1 
+       (.I0(Q[3]),
         .I1(m_axis_ready),
-        .I2(PS[1]),
+        .I2(s_axis_valid),
+        .I3(\wr_pntr_reg[1] ),
+        .I4(Q[0]),
+        .O(NS[0]));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  LUT4 #(
+    .INIT(16'hF800)) 
+    \FSM_onehot_PS[1]_i_1 
+       (.I0(s_axis_valid),
+        .I1(Q[0]),
+        .I2(Q[1]),
+        .I3(\wr_pntr_reg[1] ),
+        .O(NS[1]));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \FSM_onehot_PS[3]_i_1 
+       (.I0(axi_rst_n),
+        .O(\FSM_onehot_PS[3]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "FILL:0010,PROCESS:0100,WAIT:0001,OUT:1000" *) 
+  FDSE #(
+    .INIT(1'b1)) 
+    \FSM_onehot_PS_reg[0] 
+       (.C(axi_clk),
+        .CE(1'b1),
+        .D(NS[0]),
+        .Q(Q[0]),
+        .S(\FSM_onehot_PS[3]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "FILL:0010,PROCESS:0100,WAIT:0001,OUT:1000" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_PS_reg[1] 
+       (.C(axi_clk),
+        .CE(1'b1),
+        .D(NS[1]),
+        .Q(Q[1]),
+        .R(\FSM_onehot_PS[3]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "FILL:0010,PROCESS:0100,WAIT:0001,OUT:1000" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_PS_reg[2] 
+       (.C(axi_clk),
+        .CE(1'b1),
+        .D(D[0]),
+        .Q(Q[2]),
+        .R(\FSM_onehot_PS[3]_i_1_n_0 ));
+  (* FSM_ENCODED_STATES = "FILL:0010,PROCESS:0100,WAIT:0001,OUT:1000" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \FSM_onehot_PS_reg[3] 
+       (.C(axi_clk),
+        .CE(1'b1),
+        .D(D[1]),
+        .Q(Q[3]),
+        .R(\FSM_onehot_PS[3]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000008880)) 
+    \mem[0][23]_i_1 
+       (.I0(s_axis_valid),
+        .I1(\wr_pntr_reg[1] ),
+        .I2(Q[0]),
+        .I3(Q[1]),
+        .I4(\mem_reg[0][23] [1]),
+        .I5(\mem_reg[0][23] [0]),
+        .O(s_axis_valid_0));
+  LUT4 #(
+    .INIT(16'h0111)) 
+    \o_out[15]_i_1 
+       (.I0(Q[3]),
+        .I1(Q[2]),
+        .I2(Q[1]),
+        .I3(\wr_pntr_reg[1] ),
+        .O(p_0_in));
+  LUT6 #(
+    .INIT(64'h0001010101010101)) 
+    \rd_pntr[1]_i_1 
+       (.I0(Q[2]),
+        .I1(\rd_pntr[1]_i_4_n_0 ),
+        .I2(Q[1]),
         .I3(s_axis_valid),
-        .I4(\o_out_reg[0] ),
+        .I4(\wr_pntr_reg[1] ),
+        .I5(Q[0]),
         .O(SR));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \rd_pntr[1]_i_4 
+       (.I0(Q[3]),
+        .I1(m_axis_ready),
+        .O(\rd_pntr[1]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  LUT4 #(
+    .INIT(16'hE000)) 
+    \wr_pntr[1]_i_1 
+       (.I0(Q[1]),
+        .I1(Q[0]),
+        .I2(\wr_pntr_reg[1] ),
+        .I3(s_axis_valid),
+        .O(\FSM_onehot_PS_reg[1]_0 ));
 endmodule
 
 (* ORIG_REF_NAME = "InputBuffer" *) 
 module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
-   (S,
+   (Q,
+    S,
     \mem_reg[3][1]_0 ,
     \mem_reg[3][3]_0 ,
     \mem_reg[3][2]_0 ,
     \rd_pntr_reg[0]_0 ,
-    E,
+    \wr_pntr_reg[1]_0 ,
     DI,
     \mem_reg[3][5]_0 ,
     \mem_reg[3][6]_0 ,
-    \mem_reg[3][4]_0 ,
+    \mem_reg[2][4]_0 ,
     \mem_reg[3][1]_1 ,
-    \mem_reg[3][0]_0 ,
+    \mem_reg[2][0]_0 ,
     \mem_reg[3][6]_1 ,
     \mem_reg[2][7]_0 ,
-    \mem_reg[3][4]_1 ,
+    \mem_reg[2][4]_1 ,
     \mem_reg[3][3]_1 ,
-    \mem_reg[3][0]_1 ,
+    \mem_reg[2][0]_1 ,
     \mem_reg[3][2]_1 ,
     \mem_reg[3][5]_1 ,
     \mem_reg[3][6]_2 ,
-    \mem_reg[3][4]_2 ,
+    \mem_reg[2][4]_2 ,
     \mem_reg[3][3]_2 ,
     \mem_reg[3][3]_3 ,
     D,
     \mem_reg[2][23]_0 ,
-    \mem_reg[1][1]_0 ,
+    \mem_reg[0][1]_0 ,
     \mem_reg[3][2]_2 ,
     \mem_reg[3][6]_3 ,
     \mem_reg[3][6]_4 ,
     \mem_reg[3][5]_2 ,
+    s_axis_valid,
+    \mem_reg[1][0]_0 ,
+    \rd_pntr_reg[0]_1 ,
     o_out1__59_carry,
     o_out1__59_carry_0,
-    PS,
-    s_axis_valid,
-    \mem_reg[3][0]_2 ,
-    \rd_pntr_reg[1]_0 ,
-    \rd_pntr_reg[1]_1 ,
+    E,
     o_out1__30_carry__0,
     o_out1__30_carry,
     o_out1__30_carry_i_4_0,
@@ -189,46 +252,48 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
     o_out1__0_carry__0,
     o_out1__0_carry__0_0,
     SR,
+    \rd_pntr_reg[1]_0 ,
     axi_clk,
     \wr_pntr_reg[0]_0 ,
+    \mem_reg[0][23]_0 ,
     s_axis_data);
+  output [1:0]Q;
   output [1:0]S;
   output \mem_reg[3][1]_0 ;
   output \mem_reg[3][3]_0 ;
   output \mem_reg[3][2]_0 ;
   output \rd_pntr_reg[0]_0 ;
-  output [0:0]E;
+  output \wr_pntr_reg[1]_0 ;
   output [3:0]DI;
   output \mem_reg[3][5]_0 ;
   output \mem_reg[3][6]_0 ;
-  output \mem_reg[3][4]_0 ;
+  output \mem_reg[2][4]_0 ;
   output [1:0]\mem_reg[3][1]_1 ;
-  output \mem_reg[3][0]_0 ;
+  output \mem_reg[2][0]_0 ;
   output [0:0]\mem_reg[3][6]_1 ;
   output \mem_reg[2][7]_0 ;
-  output [1:0]\mem_reg[3][4]_1 ;
+  output [1:0]\mem_reg[2][4]_1 ;
   output \mem_reg[3][3]_1 ;
-  output [0:0]\mem_reg[3][0]_1 ;
+  output [0:0]\mem_reg[2][0]_1 ;
   output [2:0]\mem_reg[3][2]_1 ;
   output \mem_reg[3][5]_1 ;
   output [0:0]\mem_reg[3][6]_2 ;
-  output [1:0]\mem_reg[3][4]_2 ;
+  output [1:0]\mem_reg[2][4]_2 ;
   output [1:0]\mem_reg[3][3]_2 ;
   output \mem_reg[3][3]_3 ;
   output [7:0]D;
   output [7:0]\mem_reg[2][23]_0 ;
-  output [1:0]\mem_reg[1][1]_0 ;
+  output [1:0]\mem_reg[0][1]_0 ;
   output [2:0]\mem_reg[3][2]_2 ;
   output [1:0]\mem_reg[3][6]_3 ;
   output [1:0]\mem_reg[3][6]_4 ;
   output [3:0]\mem_reg[3][5]_2 ;
+  input s_axis_valid;
+  input \mem_reg[1][0]_0 ;
+  input [2:0]\rd_pntr_reg[0]_1 ;
   input o_out1__59_carry;
   input o_out1__59_carry_0;
-  input [0:0]PS;
-  input s_axis_valid;
-  input \mem_reg[3][0]_2 ;
-  input \rd_pntr_reg[1]_0 ;
-  input [0:0]\rd_pntr_reg[1]_1 ;
+  input [0:0]E;
   input o_out1__30_carry__0;
   input o_out1__30_carry;
   input o_out1__30_carry_i_4_0;
@@ -239,31 +304,36 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   input o_out1__0_carry__0;
   input o_out1__0_carry__0_0;
   input [0:0]SR;
+  input [0:0]\rd_pntr_reg[1]_0 ;
   input axi_clk;
   input [0:0]\wr_pntr_reg[0]_0 ;
+  input [0:0]\mem_reg[0][23]_0 ;
   input [23:0]s_axis_data;
 
   wire [7:0]D;
   wire [3:0]DI;
   wire [0:0]E;
-  wire [0:0]PS;
+  wire [1:0]Q;
   wire [1:0]S;
   wire [0:0]SR;
   wire axi_clk;
   wire mem;
-  wire \mem[0][23]_i_1_n_0 ;
   wire \mem[1][23]_i_1_n_0 ;
-  wire \mem[2][23]_i_1_n_0 ;
+  wire \mem[2][23]_i_1__0_n_0 ;
   wire [23:0]\mem_reg[0] ;
+  wire [1:0]\mem_reg[0][1]_0 ;
+  wire [0:0]\mem_reg[0][23]_0 ;
   wire [23:0]\mem_reg[1] ;
-  wire [1:0]\mem_reg[1][1]_0 ;
+  wire \mem_reg[1][0]_0 ;
   wire [23:0]\mem_reg[2] ;
+  wire \mem_reg[2][0]_0 ;
+  wire [0:0]\mem_reg[2][0]_1 ;
   wire [7:0]\mem_reg[2][23]_0 ;
+  wire \mem_reg[2][4]_0 ;
+  wire [1:0]\mem_reg[2][4]_1 ;
+  wire [1:0]\mem_reg[2][4]_2 ;
   wire \mem_reg[2][7]_0 ;
   wire [23:0]\mem_reg[3] ;
-  wire \mem_reg[3][0]_0 ;
-  wire [0:0]\mem_reg[3][0]_1 ;
-  wire \mem_reg[3][0]_2 ;
   wire \mem_reg[3][1]_0 ;
   wire [1:0]\mem_reg[3][1]_1 ;
   wire \mem_reg[3][2]_0 ;
@@ -273,9 +343,6 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   wire \mem_reg[3][3]_1 ;
   wire [1:0]\mem_reg[3][3]_2 ;
   wire \mem_reg[3][3]_3 ;
-  wire \mem_reg[3][4]_0 ;
-  wire [1:0]\mem_reg[3][4]_1 ;
-  wire [1:0]\mem_reg[3][4]_2 ;
   wire \mem_reg[3][5]_0 ;
   wire \mem_reg[3][5]_1 ;
   wire [3:0]\mem_reg[3][5]_2 ;
@@ -302,12 +369,12 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   wire [1:0]p_1_in;
   wire [1:0]rd_pntr;
   wire \rd_pntr_reg[0]_0 ;
-  wire \rd_pntr_reg[1]_0 ;
-  wire [0:0]\rd_pntr_reg[1]_1 ;
+  wire [2:0]\rd_pntr_reg[0]_1 ;
+  wire [0:0]\rd_pntr_reg[1]_0 ;
   wire [23:0]s_axis_data;
   wire s_axis_valid;
-  wire [1:0]wr_pntr;
   wire [0:0]\wr_pntr_reg[0]_0 ;
+  wire \wr_pntr_reg[1]_0 ;
 
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
@@ -320,24 +387,24 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I5(\mem_reg[0] [8]),
         .O(D[0]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0CCAAFFF0CCAA00)) 
     \a21_buffer[1]_i_1 
-       (.I0(\mem_reg[3] [9]),
-        .I1(\mem_reg[2] [9]),
-        .I2(\mem_reg[0] [9]),
+       (.I0(\mem_reg[2] [9]),
+        .I1(\mem_reg[1] [9]),
+        .I2(\mem_reg[3] [9]),
         .I3(rd_pntr[1]),
         .I4(rd_pntr[0]),
-        .I5(\mem_reg[1] [9]),
+        .I5(\mem_reg[0] [9]),
         .O(D[1]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hAACCF0FFAACCF000)) 
     \a21_buffer[2]_i_1 
        (.I0(\mem_reg[3] [10]),
         .I1(\mem_reg[2] [10]),
-        .I2(\mem_reg[0] [10]),
-        .I3(rd_pntr[1]),
-        .I4(rd_pntr[0]),
-        .I5(\mem_reg[1] [10]),
+        .I2(\mem_reg[1] [10]),
+        .I3(rd_pntr[0]),
+        .I4(rd_pntr[1]),
+        .I5(\mem_reg[0] [10]),
         .O(D[2]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
@@ -370,13 +437,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I5(\mem_reg[0] [13]),
         .O(D[5]));
   LUT6 #(
-    .INIT(64'hF0CCAAFFF0CCAA00)) 
+    .INIT(64'hAACCF0FFAACCF000)) 
     \a21_buffer[6]_i_1 
-       (.I0(\mem_reg[2] [14]),
-        .I1(\mem_reg[1] [14]),
-        .I2(\mem_reg[3] [14]),
-        .I3(rd_pntr[1]),
-        .I4(rd_pntr[0]),
+       (.I0(\mem_reg[3] [14]),
+        .I1(\mem_reg[2] [14]),
+        .I2(\mem_reg[1] [14]),
+        .I3(rd_pntr[0]),
+        .I4(rd_pntr[1]),
         .I5(\mem_reg[0] [14]),
         .O(D[6]));
   LUT6 #(
@@ -400,24 +467,24 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I5(\mem_reg[0] [16]),
         .O(\mem_reg[2][23]_0 [0]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0CCAAFFF0CCAA00)) 
     \a31_buffer1[1]_i_1 
-       (.I0(\mem_reg[3] [17]),
-        .I1(\mem_reg[2] [17]),
-        .I2(\mem_reg[0] [17]),
+       (.I0(\mem_reg[2] [17]),
+        .I1(\mem_reg[1] [17]),
+        .I2(\mem_reg[3] [17]),
         .I3(rd_pntr[1]),
         .I4(rd_pntr[0]),
-        .I5(\mem_reg[1] [17]),
+        .I5(\mem_reg[0] [17]),
         .O(\mem_reg[2][23]_0 [1]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hAACCF0FFAACCF000)) 
     \a31_buffer1[2]_i_1 
        (.I0(\mem_reg[3] [18]),
         .I1(\mem_reg[2] [18]),
-        .I2(\mem_reg[0] [18]),
-        .I3(rd_pntr[1]),
-        .I4(rd_pntr[0]),
-        .I5(\mem_reg[1] [18]),
+        .I2(\mem_reg[1] [18]),
+        .I3(rd_pntr[0]),
+        .I4(rd_pntr[1]),
+        .I5(\mem_reg[0] [18]),
         .O(\mem_reg[2][23]_0 [2]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
@@ -450,13 +517,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I5(\mem_reg[0] [21]),
         .O(\mem_reg[2][23]_0 [5]));
   LUT6 #(
-    .INIT(64'hF0CCAAFFF0CCAA00)) 
+    .INIT(64'hAACCF0FFAACCF000)) 
     \a31_buffer1[6]_i_1 
-       (.I0(\mem_reg[2] [22]),
-        .I1(\mem_reg[1] [22]),
-        .I2(\mem_reg[3] [22]),
-        .I3(rd_pntr[1]),
-        .I4(rd_pntr[0]),
+       (.I0(\mem_reg[3] [22]),
+        .I1(\mem_reg[2] [22]),
+        .I2(\mem_reg[1] [22]),
+        .I3(rd_pntr[0]),
+        .I4(rd_pntr[1]),
         .I5(\mem_reg[0] [22]),
         .O(\mem_reg[2][23]_0 [6]));
   LUT6 #(
@@ -469,183 +536,177 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I4(rd_pntr[0]),
         .I5(\mem_reg[0] [23]),
         .O(\mem_reg[2][23]_0 [7]));
-  LUT5 #(
-    .INIT(32'h00000040)) 
-    \mem[0][23]_i_1 
-       (.I0(PS),
-        .I1(s_axis_valid),
-        .I2(\mem_reg[3][0]_2 ),
-        .I3(wr_pntr[1]),
-        .I4(wr_pntr[0]),
-        .O(\mem[0][23]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h00004000)) 
+  LUT6 #(
+    .INIT(64'h5400000000000000)) 
     \mem[1][23]_i_1 
-       (.I0(PS),
-        .I1(s_axis_valid),
-        .I2(\mem_reg[3][0]_2 ),
-        .I3(wr_pntr[0]),
-        .I4(wr_pntr[1]),
+       (.I0(Q[1]),
+        .I1(\rd_pntr_reg[0]_1 [1]),
+        .I2(\rd_pntr_reg[0]_1 [0]),
+        .I3(\mem_reg[1][0]_0 ),
+        .I4(s_axis_valid),
+        .I5(Q[0]),
         .O(\mem[1][23]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h00004000)) 
-    \mem[2][23]_i_1 
-       (.I0(PS),
-        .I1(s_axis_valid),
-        .I2(\mem_reg[3][0]_2 ),
-        .I3(wr_pntr[1]),
-        .I4(wr_pntr[0]),
-        .O(\mem[2][23]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h40000000)) 
+  LUT6 #(
+    .INIT(64'h4000400040000000)) 
+    \mem[2][23]_i_1__0 
+       (.I0(Q[0]),
+        .I1(Q[1]),
+        .I2(s_axis_valid),
+        .I3(\mem_reg[1][0]_0 ),
+        .I4(\rd_pntr_reg[0]_1 [0]),
+        .I5(\rd_pntr_reg[0]_1 [1]),
+        .O(\mem[2][23]_i_1__0_n_0 ));
+  LUT6 #(
+    .INIT(64'hA800000000000000)) 
     \mem[3][23]_i_1 
-       (.I0(PS),
-        .I1(s_axis_valid),
-        .I2(\mem_reg[3][0]_2 ),
-        .I3(wr_pntr[1]),
-        .I4(wr_pntr[0]),
+       (.I0(Q[1]),
+        .I1(\rd_pntr_reg[0]_1 [1]),
+        .I2(\rd_pntr_reg[0]_1 [0]),
+        .I3(\mem_reg[1][0]_0 ),
+        .I4(s_axis_valid),
+        .I5(Q[0]),
         .O(mem));
   FDRE \mem_reg[0][0] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[0]),
         .Q(\mem_reg[0] [0]),
         .R(SR));
   FDRE \mem_reg[0][10] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[10]),
         .Q(\mem_reg[0] [10]),
         .R(SR));
   FDRE \mem_reg[0][11] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[11]),
         .Q(\mem_reg[0] [11]),
         .R(SR));
   FDRE \mem_reg[0][12] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[12]),
         .Q(\mem_reg[0] [12]),
         .R(SR));
   FDRE \mem_reg[0][13] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[13]),
         .Q(\mem_reg[0] [13]),
         .R(SR));
   FDRE \mem_reg[0][14] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[14]),
         .Q(\mem_reg[0] [14]),
         .R(SR));
   FDRE \mem_reg[0][15] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[15]),
         .Q(\mem_reg[0] [15]),
         .R(SR));
   FDRE \mem_reg[0][16] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[16]),
         .Q(\mem_reg[0] [16]),
         .R(SR));
   FDRE \mem_reg[0][17] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[17]),
         .Q(\mem_reg[0] [17]),
         .R(SR));
   FDRE \mem_reg[0][18] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[18]),
         .Q(\mem_reg[0] [18]),
         .R(SR));
   FDRE \mem_reg[0][19] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[19]),
         .Q(\mem_reg[0] [19]),
         .R(SR));
   FDRE \mem_reg[0][1] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[1]),
         .Q(\mem_reg[0] [1]),
         .R(SR));
   FDRE \mem_reg[0][20] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[20]),
         .Q(\mem_reg[0] [20]),
         .R(SR));
   FDRE \mem_reg[0][21] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[21]),
         .Q(\mem_reg[0] [21]),
         .R(SR));
   FDRE \mem_reg[0][22] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[22]),
         .Q(\mem_reg[0] [22]),
         .R(SR));
   FDRE \mem_reg[0][23] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[23]),
         .Q(\mem_reg[0] [23]),
         .R(SR));
   FDRE \mem_reg[0][2] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[2]),
         .Q(\mem_reg[0] [2]),
         .R(SR));
   FDRE \mem_reg[0][3] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[3]),
         .Q(\mem_reg[0] [3]),
         .R(SR));
   FDRE \mem_reg[0][4] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[4]),
         .Q(\mem_reg[0] [4]),
         .R(SR));
   FDRE \mem_reg[0][5] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[5]),
         .Q(\mem_reg[0] [5]),
         .R(SR));
   FDRE \mem_reg[0][6] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[6]),
         .Q(\mem_reg[0] [6]),
         .R(SR));
   FDRE \mem_reg[0][7] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[7]),
         .Q(\mem_reg[0] [7]),
         .R(SR));
   FDRE \mem_reg[0][8] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[8]),
         .Q(\mem_reg[0] [8]),
         .R(SR));
   FDRE \mem_reg[0][9] 
        (.C(axi_clk),
-        .CE(\mem[0][23]_i_1_n_0 ),
+        .CE(\mem_reg[0][23]_0 ),
         .D(s_axis_data[9]),
         .Q(\mem_reg[0] [9]),
         .R(SR));
@@ -795,145 +856,145 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .R(SR));
   FDRE \mem_reg[2][0] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[0]),
         .Q(\mem_reg[2] [0]),
         .R(SR));
   FDRE \mem_reg[2][10] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[10]),
         .Q(\mem_reg[2] [10]),
         .R(SR));
   FDRE \mem_reg[2][11] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[11]),
         .Q(\mem_reg[2] [11]),
         .R(SR));
   FDRE \mem_reg[2][12] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[12]),
         .Q(\mem_reg[2] [12]),
         .R(SR));
   FDRE \mem_reg[2][13] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[13]),
         .Q(\mem_reg[2] [13]),
         .R(SR));
   FDRE \mem_reg[2][14] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[14]),
         .Q(\mem_reg[2] [14]),
         .R(SR));
   FDRE \mem_reg[2][15] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[15]),
         .Q(\mem_reg[2] [15]),
         .R(SR));
   FDRE \mem_reg[2][16] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[16]),
         .Q(\mem_reg[2] [16]),
         .R(SR));
   FDRE \mem_reg[2][17] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[17]),
         .Q(\mem_reg[2] [17]),
         .R(SR));
   FDRE \mem_reg[2][18] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[18]),
         .Q(\mem_reg[2] [18]),
         .R(SR));
   FDRE \mem_reg[2][19] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[19]),
         .Q(\mem_reg[2] [19]),
         .R(SR));
   FDRE \mem_reg[2][1] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[1]),
         .Q(\mem_reg[2] [1]),
         .R(SR));
   FDRE \mem_reg[2][20] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[20]),
         .Q(\mem_reg[2] [20]),
         .R(SR));
   FDRE \mem_reg[2][21] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[21]),
         .Q(\mem_reg[2] [21]),
         .R(SR));
   FDRE \mem_reg[2][22] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[22]),
         .Q(\mem_reg[2] [22]),
         .R(SR));
   FDRE \mem_reg[2][23] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[23]),
         .Q(\mem_reg[2] [23]),
         .R(SR));
   FDRE \mem_reg[2][2] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[2]),
         .Q(\mem_reg[2] [2]),
         .R(SR));
   FDRE \mem_reg[2][3] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[3]),
         .Q(\mem_reg[2] [3]),
         .R(SR));
   FDRE \mem_reg[2][4] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[4]),
         .Q(\mem_reg[2] [4]),
         .R(SR));
   FDRE \mem_reg[2][5] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[5]),
         .Q(\mem_reg[2] [5]),
         .R(SR));
   FDRE \mem_reg[2][6] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[6]),
         .Q(\mem_reg[2] [6]),
         .R(SR));
   FDRE \mem_reg[2][7] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[7]),
         .Q(\mem_reg[2] [7]),
         .R(SR));
   FDRE \mem_reg[2][8] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[8]),
         .Q(\mem_reg[2] [8]),
         .R(SR));
   FDRE \mem_reg[2][9] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1_n_0 ),
+        .CE(\mem[2][23]_i_1__0_n_0 ),
         .D(s_axis_data[9]),
         .Q(\mem_reg[2] [9]),
         .R(SR));
@@ -1084,13 +1145,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT6 #(
     .INIT(64'h2F22020002000200)) 
     o_out1__0_carry__0_i_1
-       (.I0(\mem_reg[3][4]_0 ),
+       (.I0(\mem_reg[2][4]_0 ),
         .I1(o_out1__0_carry),
         .I2(o_out1__0_carry_0),
         .I3(\mem_reg[3][5]_0 ),
         .I4(o_out1__0_carry_1),
         .I5(\mem_reg[3][6]_0 ),
-        .O(\mem_reg[3][4]_2 [1]));
+        .O(\mem_reg[2][4]_2 [1]));
   LUT2 #(
     .INIT(4'h2)) 
     o_out1__0_carry__0_i_12
@@ -1103,14 +1164,14 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
        (.I0(\mem_reg[3][3]_0 ),
         .I1(o_out1__0_carry),
         .I2(o_out1__0_carry_0),
-        .I3(\mem_reg[3][4]_0 ),
+        .I3(\mem_reg[2][4]_0 ),
         .I4(o_out1__0_carry_1),
         .I5(\mem_reg[3][5]_0 ),
-        .O(\mem_reg[3][4]_2 [0]));
+        .O(\mem_reg[2][4]_2 [0]));
   LUT6 #(
     .INIT(64'hA6A659A65959A659)) 
     o_out1__0_carry__0_i_5
-       (.I0(\mem_reg[3][4]_2 [1]),
+       (.I0(\mem_reg[2][4]_2 [1]),
         .I1(\mem_reg[3][6]_0 ),
         .I2(o_out1__0_carry_0),
         .I3(\mem_reg[3][5]_0 ),
@@ -1120,11 +1181,11 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT6 #(
     .INIT(64'h59A65959A659A6A6)) 
     o_out1__0_carry__0_i_6
-       (.I0(\mem_reg[3][4]_2 [0]),
+       (.I0(\mem_reg[2][4]_2 [0]),
         .I1(\mem_reg[3][5]_0 ),
         .I2(o_out1__0_carry_0),
         .I3(o_out1__0_carry),
-        .I4(\mem_reg[3][4]_0 ),
+        .I4(\mem_reg[2][4]_0 ),
         .I5(o_out1__0_carry__0),
         .O(\mem_reg[3][6]_3 [0]));
   LUT4 #(
@@ -1146,19 +1207,19 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I5(\mem_reg[3][2]_0 ),
         .O(\mem_reg[3][3]_2 [1]));
   LUT6 #(
-    .INIT(64'h5500330F55FF330F)) 
+    .INIT(64'h0F0055330FFF5533)) 
     o_out1__0_carry_i_11
-       (.I0(\mem_reg[3] [0]),
-        .I1(\mem_reg[2] [0]),
-        .I2(\mem_reg[0] [0]),
+       (.I0(\mem_reg[2] [0]),
+        .I1(\mem_reg[0] [0]),
+        .I2(\mem_reg[3] [0]),
         .I3(rd_pntr[1]),
         .I4(rd_pntr[0]),
         .I5(\mem_reg[1] [0]),
-        .O(\mem_reg[3][0]_0 ));
+        .O(\mem_reg[2][0]_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     o_out1__0_carry_i_3
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__0_carry_0),
         .O(\mem_reg[3][3]_2 [0]));
   LUT6 #(
@@ -1168,13 +1229,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I1(o_out1__0_carry_2),
         .I2(\mem_reg[3][1]_0 ),
         .I3(o_out1__0_carry),
-        .I4(\mem_reg[3][0]_0 ),
+        .I4(\mem_reg[2][0]_0 ),
         .I5(o_out1__0_carry_0),
         .O(\mem_reg[3][2]_2 [2]));
   LUT6 #(
     .INIT(64'hEEE1111E111E111E)) 
     o_out1__0_carry_i_5
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__0_carry),
         .I2(\mem_reg[3][1]_0 ),
         .I3(o_out1__0_carry_0),
@@ -1187,28 +1248,28 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
        (.I0(\mem_reg[3][1]_0 ),
         .I1(o_out1__0_carry_1),
         .I2(o_out1__0_carry_0),
-        .I3(\mem_reg[3][0]_0 ),
+        .I3(\mem_reg[2][0]_0 ),
         .O(\mem_reg[3][2]_2 [0]));
   LUT6 #(
-    .INIT(64'h5500330F55FF330F)) 
+    .INIT(64'h55330F0055330FFF)) 
     o_out1__0_carry_i_9
        (.I0(\mem_reg[3] [1]),
         .I1(\mem_reg[2] [1]),
-        .I2(\mem_reg[0] [1]),
-        .I3(rd_pntr[1]),
-        .I4(rd_pntr[0]),
-        .I5(\mem_reg[1] [1]),
+        .I2(\mem_reg[1] [1]),
+        .I3(rd_pntr[0]),
+        .I4(rd_pntr[1]),
+        .I5(\mem_reg[0] [1]),
         .O(\mem_reg[3][1]_0 ));
   LUT6 #(
     .INIT(64'h020002002F220200)) 
     o_out1__30_carry__0_i_1
-       (.I0(\mem_reg[3][4]_0 ),
+       (.I0(\mem_reg[2][4]_0 ),
         .I1(o_out1__30_carry__0),
         .I2(o_out1__30_carry),
         .I3(\mem_reg[3][5]_0 ),
         .I4(\mem_reg[3][6]_0 ),
         .I5(o_out1__30_carry_i_4_0),
-        .O(\mem_reg[3][4]_1 [1]));
+        .O(\mem_reg[2][4]_1 [1]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT2 #(
     .INIT(4'h2)) 
@@ -1235,14 +1296,14 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
        (.I0(\mem_reg[3][3]_0 ),
         .I1(o_out1__30_carry__0),
         .I2(o_out1__30_carry),
-        .I3(\mem_reg[3][4]_0 ),
+        .I3(\mem_reg[2][4]_0 ),
         .I4(\mem_reg[3][5]_0 ),
         .I5(o_out1__30_carry_i_4_0),
-        .O(\mem_reg[3][4]_1 [0]));
+        .O(\mem_reg[2][4]_1 [0]));
   LUT6 #(
     .INIT(64'hA6A659A65959A659)) 
     o_out1__30_carry__0_i_5
-       (.I0(\mem_reg[3][4]_1 [1]),
+       (.I0(\mem_reg[2][4]_1 [1]),
         .I1(\mem_reg[3][6]_0 ),
         .I2(o_out1__30_carry),
         .I3(\mem_reg[3][5]_0 ),
@@ -1252,11 +1313,11 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT6 #(
     .INIT(64'h59A65959A659A6A6)) 
     o_out1__30_carry__0_i_6
-       (.I0(\mem_reg[3][4]_1 [0]),
+       (.I0(\mem_reg[2][4]_1 [0]),
         .I1(\mem_reg[3][5]_0 ),
         .I2(o_out1__30_carry),
         .I3(o_out1__30_carry__0),
-        .I4(\mem_reg[3][4]_0 ),
+        .I4(\mem_reg[2][4]_0 ),
         .I5(o_out1__30_carry__0_i_10_n_0),
         .O(\mem_reg[3][6]_4 [0]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -1284,9 +1345,9 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT2 #(
     .INIT(4'h1)) 
     o_out1__30_carry_i_3
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__30_carry),
-        .O(\mem_reg[3][0]_1 ));
+        .O(\mem_reg[2][0]_1 ));
   LUT6 #(
     .INIT(64'hCCC3CCC366696666)) 
     o_out1__30_carry_i_4
@@ -1294,13 +1355,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I1(o_out1__30_carry_i_11_n_0),
         .I2(\mem_reg[3][1]_0 ),
         .I3(o_out1__30_carry__0),
-        .I4(\mem_reg[3][0]_0 ),
+        .I4(\mem_reg[2][0]_0 ),
         .I5(o_out1__30_carry),
         .O(\mem_reg[3][2]_1 [2]));
   LUT6 #(
     .INIT(64'h111EEEE1111E111E)) 
     o_out1__30_carry_i_5
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__30_carry__0),
         .I2(\mem_reg[3][1]_0 ),
         .I3(o_out1__30_carry),
@@ -1310,7 +1371,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT2 #(
     .INIT(4'h1)) 
     o_out1__30_carry_i_7
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__30_carry_i_4_0),
         .O(\mem_reg[3][2]_1 [0]));
   LUT4 #(
@@ -1324,7 +1385,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT4 #(
     .INIT(16'h0D00)) 
     o_out1__59_carry__0_i_2
-       (.I0(\mem_reg[3][4]_0 ),
+       (.I0(\mem_reg[2][4]_0 ),
         .I1(o_out1__59_carry_0),
         .I2(o_out1__59_carry),
         .I3(\mem_reg[3][5]_0 ),
@@ -1335,7 +1396,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
        (.I0(\mem_reg[3][3]_0 ),
         .I1(o_out1__59_carry_0),
         .I2(o_out1__59_carry),
-        .I3(\mem_reg[3][4]_0 ),
+        .I3(\mem_reg[2][4]_0 ),
         .O(DI[1]));
   LUT4 #(
     .INIT(16'h0D00)) 
@@ -1357,7 +1418,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT5 #(
     .INIT(32'hFC09F3F3)) 
     o_out1__59_carry__0_i_6
-       (.I0(\mem_reg[3][4]_0 ),
+       (.I0(\mem_reg[2][4]_0 ),
         .I1(\mem_reg[3][6]_0 ),
         .I2(o_out1__59_carry),
         .I3(o_out1__59_carry_0),
@@ -1370,13 +1431,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I1(\mem_reg[3][5]_0 ),
         .I2(o_out1__59_carry),
         .I3(o_out1__59_carry_0),
-        .I4(\mem_reg[3][4]_0 ),
+        .I4(\mem_reg[2][4]_0 ),
         .O(\mem_reg[3][5]_2 [1]));
   LUT5 #(
     .INIT(32'hFC09F3F3)) 
     o_out1__59_carry__0_i_8
        (.I0(\mem_reg[3][2]_0 ),
-        .I1(\mem_reg[3][4]_0 ),
+        .I1(\mem_reg[2][4]_0 ),
         .I2(o_out1__59_carry),
         .I3(o_out1__59_carry_0),
         .I4(\mem_reg[3][3]_0 ),
@@ -1390,7 +1451,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT2 #(
     .INIT(4'hE)) 
     o_out1__59_carry_i_3
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__59_carry_0),
         .O(\mem_reg[3][1]_1 [0]));
   LUT5 #(
@@ -1405,29 +1466,29 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
   LUT2 #(
     .INIT(4'h1)) 
     o_out1__59_carry_i_7
-       (.I0(\mem_reg[3][0]_0 ),
+       (.I0(\mem_reg[2][0]_0 ),
         .I1(o_out1__59_carry),
         .O(S[0]));
   LUT6 #(
-    .INIT(64'hFBF8CBC83B380B08)) 
+    .INIT(64'hFB3BF838CB0BC808)) 
     \o_x[0]_i_1 
        (.I0(\mem_reg[1] [0]),
         .I1(rd_pntr[0]),
         .I2(rd_pntr[1]),
-        .I3(\mem_reg[0] [0]),
-        .I4(\mem_reg[2] [0]),
-        .I5(\mem_reg[3] [0]),
-        .O(\mem_reg[1][1]_0 [0]));
+        .I3(\mem_reg[3] [0]),
+        .I4(\mem_reg[0] [0]),
+        .I5(\mem_reg[2] [0]),
+        .O(\mem_reg[0][1]_0 [0]));
   LUT6 #(
-    .INIT(64'hFBF8CBC83B380B08)) 
+    .INIT(64'hFECEF2C23E0E3202)) 
     \o_x[1]_i_1 
-       (.I0(\mem_reg[1] [1]),
-        .I1(rd_pntr[0]),
-        .I2(rd_pntr[1]),
-        .I3(\mem_reg[0] [1]),
+       (.I0(\mem_reg[0] [1]),
+        .I1(rd_pntr[1]),
+        .I2(rd_pntr[0]),
+        .I3(\mem_reg[1] [1]),
         .I4(\mem_reg[2] [1]),
         .I5(\mem_reg[3] [1]),
-        .O(\mem_reg[1][1]_0 [1]));
+        .O(\mem_reg[0][1]_0 [1]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
     \o_x[2]_i_1 
@@ -1449,15 +1510,15 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
         .I5(\mem_reg[0] [3]),
         .O(\mem_reg[3][3]_0 ));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0FFAACCF000AACC)) 
     \o_x[4]_i_1 
-       (.I0(\mem_reg[3] [4]),
-        .I1(\mem_reg[2] [4]),
-        .I2(\mem_reg[0] [4]),
+       (.I0(\mem_reg[2] [4]),
+        .I1(\mem_reg[0] [4]),
+        .I2(\mem_reg[3] [4]),
         .I3(rd_pntr[1]),
         .I4(rd_pntr[0]),
         .I5(\mem_reg[1] [4]),
-        .O(\mem_reg[3][4]_0 ));
+        .O(\mem_reg[2][4]_0 ));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
     \o_x[5]_i_1 
@@ -1494,16 +1555,6 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
     \rd_pntr[0]_i_1 
        (.I0(rd_pntr[0]),
         .O(p_1_in[0]));
-  LUT6 #(
-    .INIT(64'h28AAAA2800000000)) 
-    \rd_pntr[1]_i_2 
-       (.I0(\rd_pntr_reg[1]_0 ),
-        .I1(rd_pntr[1]),
-        .I2(wr_pntr[1]),
-        .I3(rd_pntr[0]),
-        .I4(wr_pntr[0]),
-        .I5(\rd_pntr_reg[1]_1 ),
-        .O(E));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'h6)) 
@@ -1511,15 +1562,25 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
        (.I0(rd_pntr[0]),
         .I1(rd_pntr[1]),
         .O(p_1_in[1]));
+  LUT6 #(
+    .INIT(64'h9009FFFFFFFFFFFF)) 
+    \rd_pntr[1]_i_5 
+       (.I0(Q[1]),
+        .I1(rd_pntr[1]),
+        .I2(Q[0]),
+        .I3(rd_pntr[0]),
+        .I4(E),
+        .I5(\rd_pntr_reg[0]_1 [2]),
+        .O(\wr_pntr_reg[1]_0 ));
   FDRE \rd_pntr_reg[0] 
        (.C(axi_clk),
-        .CE(E),
+        .CE(\rd_pntr_reg[1]_0 ),
         .D(p_1_in[0]),
         .Q(rd_pntr[0]),
         .R(SR));
   FDRE \rd_pntr_reg[1] 
        (.C(axi_clk),
-        .CE(E),
+        .CE(\rd_pntr_reg[1]_0 ),
         .D(p_1_in[1]),
         .Q(rd_pntr[1]),
         .R(SR));
@@ -1528,33 +1589,33 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer
     .INIT(16'h2442)) 
     s_axis_ready_INST_0_i_1
        (.I0(rd_pntr[0]),
-        .I1(wr_pntr[0]),
-        .I2(wr_pntr[1]),
+        .I1(Q[0]),
+        .I2(Q[1]),
         .I3(rd_pntr[1]),
         .O(\rd_pntr_reg[0]_0 ));
   LUT1 #(
     .INIT(2'h1)) 
     \wr_pntr[0]_i_1 
-       (.I0(wr_pntr[0]),
+       (.I0(Q[0]),
         .O(next_wr[0]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \wr_pntr[1]_i_2 
-       (.I0(wr_pntr[0]),
-        .I1(wr_pntr[1]),
+       (.I0(Q[0]),
+        .I1(Q[1]),
         .O(next_wr[1]));
   FDRE \wr_pntr_reg[0] 
        (.C(axi_clk),
         .CE(\wr_pntr_reg[0]_0 ),
         .D(next_wr[0]),
-        .Q(wr_pntr[0]),
+        .Q(Q[0]),
         .R(SR));
   FDRE \wr_pntr_reg[1] 
        (.C(axi_clk),
         .CE(\wr_pntr_reg[0]_0 ),
         .D(next_wr[1]),
-        .Q(wr_pntr[1]),
+        .Q(Q[1]),
         .R(SR));
 endmodule
 
@@ -1562,8 +1623,7 @@ endmodule
 module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
    (\wr_pntr_reg[0]_0 ,
     E,
-    \FSM_sequential_PS_reg[0] ,
-    D,
+    \mem_reg[2][15]_0 ,
     \mem_reg[2][23]_0 ,
     \mem_reg[2][7]_0 ,
     \mem_reg[2][7]_1 ,
@@ -1586,17 +1646,18 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
     S,
     O,
     DI,
-    \mem_reg[3][4]_2 ,
+    \mem_reg[2][4]_0 ,
     \mem_reg[3][1]_2 ,
     \mem_reg[3][3]_2 ,
-    \mem_reg[3][4]_3 ,
-    \mem_reg[3][4]_4 ,
+    \mem_reg[2][4]_1 ,
+    \mem_reg[3][4]_2 ,
     \mem_reg[2][7]_3 ,
     \mem_reg[3][6]_1 ,
     o_out1__59_carry__1,
-    PS,
     s_axis_valid,
+    Q,
     s_axis_ready,
+    \rd_pntr_reg[0]_0 ,
     o_out1__0_carry__0_i_6,
     o_out1__0_carry__0_i_5,
     o_out1__0_carry__0,
@@ -1617,13 +1678,12 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
     o_out1__86_carry__1_1,
     m_axis_data,
     SR,
-    \rd_pntr_reg[0]_0 ,
     axi_clk,
+    \wr_pntr_reg[1]_0 ,
     s_axis_data);
   output \wr_pntr_reg[0]_0 ;
   output [0:0]E;
-  output \FSM_sequential_PS_reg[0] ;
-  output [7:0]D;
+  output [7:0]\mem_reg[2][15]_0 ;
   output [7:0]\mem_reg[2][23]_0 ;
   output [0:0]\mem_reg[2][7]_0 ;
   output \mem_reg[2][7]_1 ;
@@ -1646,17 +1706,18 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
   output [0:0]S;
   output [3:0]O;
   output [0:0]DI;
-  output [1:0]\mem_reg[3][4]_2 ;
+  output [1:0]\mem_reg[2][4]_0 ;
   output [1:0]\mem_reg[3][1]_2 ;
   output [0:0]\mem_reg[3][3]_2 ;
-  output [1:0]\mem_reg[3][4]_3 ;
-  output [1:0]\mem_reg[3][4]_4 ;
+  output [1:0]\mem_reg[2][4]_1 ;
+  output [1:0]\mem_reg[3][4]_2 ;
   output [1:0]\mem_reg[2][7]_3 ;
   output [0:0]\mem_reg[3][6]_1 ;
   output [2:0]o_out1__59_carry__1;
-  input [1:0]PS;
   input s_axis_valid;
+  input [1:0]Q;
   input s_axis_ready;
+  input \rd_pntr_reg[0]_0 ;
   input o_out1__0_carry__0_i_6;
   input o_out1__0_carry__0_i_5;
   input o_out1__0_carry__0;
@@ -1677,17 +1738,15 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
   input [0:0]o_out1__86_carry__1_1;
   input [2:0]m_axis_data;
   input [0:0]SR;
-  input [0:0]\rd_pntr_reg[0]_0 ;
   input axi_clk;
+  input [0:0]\wr_pntr_reg[1]_0 ;
   input [23:0]s_axis_data;
 
   wire [0:0]CO;
-  wire [7:0]D;
   wire [0:0]DI;
   wire [0:0]E;
-  wire \FSM_sequential_PS_reg[0] ;
   wire [3:0]O;
-  wire [1:0]PS;
+  wire [1:0]Q;
   wire [0:0]S;
   wire [0:0]SR;
   wire axi_clk;
@@ -1695,9 +1754,12 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
   wire mem;
   wire \mem[0][23]_i_1__0_n_0 ;
   wire \mem[1][23]_i_1__0_n_0 ;
-  wire \mem[2][23]_i_1__0_n_0 ;
+  wire \mem[2][23]_i_1_n_0 ;
   wire [7:0]\mem_reg[0][7]_0 ;
+  wire [7:0]\mem_reg[2][15]_0 ;
   wire [7:0]\mem_reg[2][23]_0 ;
+  wire [1:0]\mem_reg[2][4]_0 ;
+  wire [1:0]\mem_reg[2][4]_1 ;
   wire [0:0]\mem_reg[2][7]_0 ;
   wire \mem_reg[2][7]_1 ;
   wire [0:0]\mem_reg[2][7]_2 ;
@@ -1716,8 +1778,6 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
   wire [0:0]\mem_reg[3][4]_0 ;
   wire \mem_reg[3][4]_1 ;
   wire [1:0]\mem_reg[3][4]_2 ;
-  wire [1:0]\mem_reg[3][4]_3 ;
-  wire [1:0]\mem_reg[3][4]_4 ;
   wire \mem_reg[3][5]_0 ;
   wire [1:0]\mem_reg[3][5]_1 ;
   wire \mem_reg[3][6]_0 ;
@@ -1845,7 +1905,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
   wire \o_out_reg[15]_i_1_n_3 ;
   wire \rd_pntr[0]_i_1__0_n_0 ;
   wire \rd_pntr[1]_i_1__0_n_0 ;
-  wire [0:0]\rd_pntr_reg[0]_0 ;
+  wire \rd_pntr_reg[0]_0 ;
   wire \rd_pntr_reg_n_0_[0] ;
   wire \rd_pntr_reg_n_0_[1] ;
   wire [23:0]s_axis_data;
@@ -1854,6 +1914,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
   wire \wr_pntr[0]_i_1__0_n_0 ;
   wire \wr_pntr[1]_i_1__0_n_0 ;
   wire \wr_pntr_reg[0]_0 ;
+  wire [0:0]\wr_pntr_reg[1]_0 ;
   wire \wr_pntr_reg_n_0_[0] ;
   wire \wr_pntr_reg_n_0_[1] ;
   wire [3:3]\NLW_o_out_reg[15]_i_1_CO_UNCONNECTED ;
@@ -1867,27 +1928,27 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\rd_pntr_reg_n_0_[0] ),
         .I4(\rd_pntr_reg_n_0_[1] ),
         .I5(\mem_reg_n_0_[0][8] ),
-        .O(D[0]));
+        .O(\mem_reg[2][15]_0 [0]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0CCAAFFF0CCAA00)) 
     \b12_buffer[1]_i_1 
-       (.I0(\mem_reg_n_0_[3][9] ),
-        .I1(\mem_reg_n_0_[2][9] ),
-        .I2(\mem_reg_n_0_[0][9] ),
+       (.I0(\mem_reg_n_0_[2][9] ),
+        .I1(\mem_reg_n_0_[1][9] ),
+        .I2(\mem_reg_n_0_[3][9] ),
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
-        .I5(\mem_reg_n_0_[1][9] ),
-        .O(D[1]));
+        .I5(\mem_reg_n_0_[0][9] ),
+        .O(\mem_reg[2][15]_0 [1]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0CCAAFFF0CCAA00)) 
     \b12_buffer[2]_i_1 
-       (.I0(\mem_reg_n_0_[3][10] ),
-        .I1(\mem_reg_n_0_[2][10] ),
-        .I2(\mem_reg_n_0_[0][10] ),
+       (.I0(\mem_reg_n_0_[2][10] ),
+        .I1(\mem_reg_n_0_[1][10] ),
+        .I2(\mem_reg_n_0_[3][10] ),
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
-        .I5(\mem_reg_n_0_[1][10] ),
-        .O(D[2]));
+        .I5(\mem_reg_n_0_[0][10] ),
+        .O(\mem_reg[2][15]_0 [2]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
     \b12_buffer[3]_i_1 
@@ -1897,7 +1958,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\rd_pntr_reg_n_0_[0] ),
         .I4(\rd_pntr_reg_n_0_[1] ),
         .I5(\mem_reg_n_0_[0][11] ),
-        .O(D[3]));
+        .O(\mem_reg[2][15]_0 [3]));
   LUT6 #(
     .INIT(64'hAAFFCCF0AA00CCF0)) 
     \b12_buffer[4]_i_1 
@@ -1907,7 +1968,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
         .I5(\mem_reg_n_0_[1][12] ),
-        .O(D[4]));
+        .O(\mem_reg[2][15]_0 [4]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
     \b12_buffer[5]_i_1 
@@ -1917,7 +1978,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\rd_pntr_reg_n_0_[0] ),
         .I4(\rd_pntr_reg_n_0_[1] ),
         .I5(\mem_reg_n_0_[0][13] ),
-        .O(D[5]));
+        .O(\mem_reg[2][15]_0 [5]));
   LUT6 #(
     .INIT(64'hF0CCAAFFF0CCAA00)) 
     \b12_buffer[6]_i_1 
@@ -1927,7 +1988,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
         .I5(\mem_reg_n_0_[0][14] ),
-        .O(D[6]));
+        .O(\mem_reg[2][15]_0 [6]));
   LUT6 #(
     .INIT(64'hF0CCAAFFF0CCAA00)) 
     \b12_buffer[7]_i_1 
@@ -1937,7 +1998,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
         .I5(\mem_reg_n_0_[0][15] ),
-        .O(D[7]));
+        .O(\mem_reg[2][15]_0 [7]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
     \b13_buffer1[0]_i_1 
@@ -1949,24 +2010,24 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I5(\mem_reg_n_0_[0][16] ),
         .O(\mem_reg[2][23]_0 [0]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0CCAAFFF0CCAA00)) 
     \b13_buffer1[1]_i_1 
-       (.I0(\mem_reg_n_0_[3][17] ),
-        .I1(\mem_reg_n_0_[2][17] ),
-        .I2(\mem_reg_n_0_[0][17] ),
+       (.I0(\mem_reg_n_0_[2][17] ),
+        .I1(\mem_reg_n_0_[1][17] ),
+        .I2(\mem_reg_n_0_[3][17] ),
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
-        .I5(\mem_reg_n_0_[1][17] ),
+        .I5(\mem_reg_n_0_[0][17] ),
         .O(\mem_reg[2][23]_0 [1]));
   LUT6 #(
-    .INIT(64'hAAFFCCF0AA00CCF0)) 
+    .INIT(64'hF0CCAAFFF0CCAA00)) 
     \b13_buffer1[2]_i_1 
-       (.I0(\mem_reg_n_0_[3][18] ),
-        .I1(\mem_reg_n_0_[2][18] ),
-        .I2(\mem_reg_n_0_[0][18] ),
+       (.I0(\mem_reg_n_0_[2][18] ),
+        .I1(\mem_reg_n_0_[1][18] ),
+        .I2(\mem_reg_n_0_[3][18] ),
         .I3(\rd_pntr_reg_n_0_[1] ),
         .I4(\rd_pntr_reg_n_0_[0] ),
-        .I5(\mem_reg_n_0_[1][18] ),
+        .I5(\mem_reg_n_0_[0][18] ),
         .O(\mem_reg[2][23]_0 [2]));
   LUT6 #(
     .INIT(64'hAACCF0FFAACCF000)) 
@@ -2018,41 +2079,45 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I4(\rd_pntr_reg_n_0_[0] ),
         .I5(\mem_reg_n_0_[0][23] ),
         .O(\mem_reg[2][23]_0 [7]));
-  LUT5 #(
-    .INIT(32'h00000040)) 
+  LUT6 #(
+    .INIT(64'h0000000000008880)) 
     \mem[0][23]_i_1__0 
-       (.I0(PS[1]),
-        .I1(s_axis_valid),
-        .I2(\wr_pntr_reg[0]_0 ),
-        .I3(\wr_pntr_reg_n_0_[1] ),
-        .I4(\wr_pntr_reg_n_0_[0] ),
-        .O(\mem[0][23]_i_1__0_n_0 ));
-  LUT5 #(
-    .INIT(32'h00004000)) 
-    \mem[1][23]_i_1__0 
-       (.I0(PS[1]),
-        .I1(s_axis_valid),
-        .I2(\wr_pntr_reg[0]_0 ),
-        .I3(\wr_pntr_reg_n_0_[0] ),
+       (.I0(s_axis_valid),
+        .I1(\wr_pntr_reg[0]_0 ),
+        .I2(Q[0]),
+        .I3(Q[1]),
         .I4(\wr_pntr_reg_n_0_[1] ),
+        .I5(\wr_pntr_reg_n_0_[0] ),
+        .O(\mem[0][23]_i_1__0_n_0 ));
+  LUT6 #(
+    .INIT(64'h4000400040000000)) 
+    \mem[1][23]_i_1__0 
+       (.I0(\wr_pntr_reg_n_0_[1] ),
+        .I1(\wr_pntr_reg_n_0_[0] ),
+        .I2(s_axis_valid),
+        .I3(\wr_pntr_reg[0]_0 ),
+        .I4(Q[0]),
+        .I5(Q[1]),
         .O(\mem[1][23]_i_1__0_n_0 ));
-  LUT5 #(
-    .INIT(32'h00004000)) 
-    \mem[2][23]_i_1__0 
-       (.I0(PS[1]),
-        .I1(s_axis_valid),
-        .I2(\wr_pntr_reg[0]_0 ),
-        .I3(\wr_pntr_reg_n_0_[1] ),
-        .I4(\wr_pntr_reg_n_0_[0] ),
-        .O(\mem[2][23]_i_1__0_n_0 ));
-  LUT5 #(
-    .INIT(32'h40000000)) 
+  LUT6 #(
+    .INIT(64'h4000400040000000)) 
+    \mem[2][23]_i_1 
+       (.I0(\wr_pntr_reg_n_0_[0] ),
+        .I1(\wr_pntr_reg_n_0_[1] ),
+        .I2(s_axis_valid),
+        .I3(\wr_pntr_reg[0]_0 ),
+        .I4(Q[0]),
+        .I5(Q[1]),
+        .O(\mem[2][23]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h8880000000000000)) 
     \mem[3][23]_i_1__0 
-       (.I0(PS[1]),
-        .I1(s_axis_valid),
-        .I2(\wr_pntr_reg[0]_0 ),
-        .I3(\wr_pntr_reg_n_0_[1] ),
-        .I4(\wr_pntr_reg_n_0_[0] ),
+       (.I0(s_axis_valid),
+        .I1(\wr_pntr_reg[0]_0 ),
+        .I2(Q[0]),
+        .I3(Q[1]),
+        .I4(\wr_pntr_reg_n_0_[1] ),
+        .I5(\wr_pntr_reg_n_0_[0] ),
         .O(mem));
   FDRE \mem_reg[0][0] 
        (.C(axi_clk),
@@ -2344,145 +2409,145 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .R(SR));
   FDRE \mem_reg[2][0] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[0]),
         .Q(\mem_reg_n_0_[2][0] ),
         .R(SR));
   FDRE \mem_reg[2][10] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[10]),
         .Q(\mem_reg_n_0_[2][10] ),
         .R(SR));
   FDRE \mem_reg[2][11] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[11]),
         .Q(\mem_reg_n_0_[2][11] ),
         .R(SR));
   FDRE \mem_reg[2][12] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[12]),
         .Q(\mem_reg_n_0_[2][12] ),
         .R(SR));
   FDRE \mem_reg[2][13] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[13]),
         .Q(\mem_reg_n_0_[2][13] ),
         .R(SR));
   FDRE \mem_reg[2][14] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[14]),
         .Q(\mem_reg_n_0_[2][14] ),
         .R(SR));
   FDRE \mem_reg[2][15] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[15]),
         .Q(\mem_reg_n_0_[2][15] ),
         .R(SR));
   FDRE \mem_reg[2][16] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[16]),
         .Q(\mem_reg_n_0_[2][16] ),
         .R(SR));
   FDRE \mem_reg[2][17] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[17]),
         .Q(\mem_reg_n_0_[2][17] ),
         .R(SR));
   FDRE \mem_reg[2][18] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[18]),
         .Q(\mem_reg_n_0_[2][18] ),
         .R(SR));
   FDRE \mem_reg[2][19] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[19]),
         .Q(\mem_reg_n_0_[2][19] ),
         .R(SR));
   FDRE \mem_reg[2][1] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[1]),
         .Q(\mem_reg_n_0_[2][1] ),
         .R(SR));
   FDRE \mem_reg[2][20] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[20]),
         .Q(\mem_reg_n_0_[2][20] ),
         .R(SR));
   FDRE \mem_reg[2][21] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[21]),
         .Q(\mem_reg_n_0_[2][21] ),
         .R(SR));
   FDRE \mem_reg[2][22] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[22]),
         .Q(\mem_reg_n_0_[2][22] ),
         .R(SR));
   FDRE \mem_reg[2][23] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[23]),
         .Q(\mem_reg_n_0_[2][23] ),
         .R(SR));
   FDRE \mem_reg[2][2] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[2]),
         .Q(\mem_reg_n_0_[2][2] ),
         .R(SR));
   FDRE \mem_reg[2][3] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[3]),
         .Q(\mem_reg_n_0_[2][3] ),
         .R(SR));
   FDRE \mem_reg[2][4] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[4]),
         .Q(\mem_reg_n_0_[2][4] ),
         .R(SR));
   FDRE \mem_reg[2][5] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[5]),
         .Q(\mem_reg_n_0_[2][5] ),
         .R(SR));
   FDRE \mem_reg[2][6] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[6]),
         .Q(\mem_reg_n_0_[2][6] ),
         .R(SR));
   FDRE \mem_reg[2][7] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[7]),
         .Q(\mem_reg_n_0_[2][7] ),
         .R(SR));
   FDRE \mem_reg[2][8] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[8]),
         .Q(\mem_reg_n_0_[2][8] ),
         .R(SR));
   FDRE \mem_reg[2][9] 
        (.C(axi_clk),
-        .CE(\mem[2][23]_i_1__0_n_0 ),
+        .CE(\mem[2][23]_i_1_n_0 ),
         .D(s_axis_data[9]),
         .Q(\mem_reg_n_0_[2][9] ),
         .R(SR));
@@ -2673,7 +2738,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\mem_reg[3][2]_0 ),
         .I4(o_out1__0_carry_i_4),
         .I5(o_out1__0_carry__0_i_11_n_0),
-        .O(\mem_reg[3][4]_2 [1]));
+        .O(\mem_reg[2][4]_0 [1]));
   LUT6 #(
     .INIT(64'h9A65659A659A659A)) 
     o_out1__0_carry__0_i_8
@@ -2683,7 +2748,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(o_out1__0_carry__0_2),
         .I4(\mem_reg[0][7]_0 [0]),
         .I5(o_out1__0_carry__0_1),
-        .O(\mem_reg[3][4]_2 [0]));
+        .O(\mem_reg[2][4]_0 [0]));
   (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'h8)) 
@@ -2751,14 +2816,14 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I1(o_out1__0_carry),
         .O(S));
   LUT6 #(
-    .INIT(64'h5500330F55FF330F)) 
+    .INIT(64'h55330F0055330FFF)) 
     o_out1__0_carry_i_8
        (.I0(\mem_reg_n_0_[3][2] ),
         .I1(\mem_reg_n_0_[2][2] ),
-        .I2(\mem_reg_n_0_[0][2] ),
-        .I3(\rd_pntr_reg_n_0_[1] ),
-        .I4(\rd_pntr_reg_n_0_[0] ),
-        .I5(\mem_reg_n_0_[1][2] ),
+        .I2(\mem_reg_n_0_[1][2] ),
+        .I3(\rd_pntr_reg_n_0_[0] ),
+        .I4(\rd_pntr_reg_n_0_[1] ),
+        .I5(\mem_reg_n_0_[0][2] ),
         .O(\mem_reg[3][2]_0 ));
   LUT6 #(
     .INIT(64'h040004004F440400)) 
@@ -2789,7 +2854,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\mem_reg[3][5]_0 ),
         .I4(o_out1__0_carry_i_4),
         .I5(o_out1__30_carry__0_0),
-        .O(\mem_reg[3][4]_3 [1]));
+        .O(\mem_reg[2][4]_1 [1]));
   LUT6 #(
     .INIT(64'h659A659A9A65659A)) 
     o_out1__30_carry__0_i_8
@@ -2799,7 +2864,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(o_out1__30_carry__0),
         .I4(o_out1__0_carry__0_1),
         .I5(\mem_reg[3][3]_0 ),
-        .O(\mem_reg[3][4]_3 [0]));
+        .O(\mem_reg[2][4]_1 [0]));
   LUT6 #(
     .INIT(64'h50DC50DC004050DC)) 
     o_out1__30_carry__1_i_2
@@ -2817,7 +2882,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I1(o_out1__0_carry__0_i_6),
         .I2(o_out1__0_carry__0_i_5),
         .I3(\mem_reg[3][5]_0 ),
-        .O(\mem_reg[3][4]_4 [1]));
+        .O(\mem_reg[3][4]_2 [1]));
   LUT6 #(
     .INIT(64'hFFA08C1FFF0F7383)) 
     o_out1__30_carry__1_i_4
@@ -2827,7 +2892,7 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(\mem_reg[3][4]_1 ),
         .I4(\mem_reg[3][5]_0 ),
         .I5(o_out1__0_carry__0_i_6),
-        .O(\mem_reg[3][4]_4 [0]));
+        .O(\mem_reg[3][4]_2 [0]));
   LUT6 #(
     .INIT(64'h444BBBB4444B444B)) 
     o_out1__30_carry_i_1
@@ -2865,14 +2930,14 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I3(o_out1__0_carry),
         .O(\mem_reg[3][3]_2 ));
   LUT6 #(
-    .INIT(64'h5500330F55FF330F)) 
+    .INIT(64'h55330F0055330FFF)) 
     o_out1__30_carry_i_8
        (.I0(\mem_reg_n_0_[3][3] ),
         .I1(\mem_reg_n_0_[2][3] ),
-        .I2(\mem_reg_n_0_[0][3] ),
-        .I3(\rd_pntr_reg_n_0_[1] ),
-        .I4(\rd_pntr_reg_n_0_[0] ),
-        .I5(\mem_reg_n_0_[1][3] ),
+        .I2(\mem_reg_n_0_[1][3] ),
+        .I3(\rd_pntr_reg_n_0_[0] ),
+        .I4(\rd_pntr_reg_n_0_[1] ),
+        .I5(\mem_reg_n_0_[0][3] ),
         .O(\mem_reg[3][3]_0 ));
   LUT6 #(
     .INIT(64'h55330F0055330FFF)) 
@@ -3012,22 +3077,22 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .I5(\mem_reg_n_0_[3][1] ),
         .O(\mem_reg[0][7]_0 [1]));
   LUT6 #(
-    .INIT(64'hFBF8CBC83B380B08)) 
+    .INIT(64'hFECEF2C23E0E3202)) 
     \o_y[2]_i_1 
-       (.I0(\mem_reg_n_0_[1][2] ),
-        .I1(\rd_pntr_reg_n_0_[0] ),
-        .I2(\rd_pntr_reg_n_0_[1] ),
-        .I3(\mem_reg_n_0_[0][2] ),
+       (.I0(\mem_reg_n_0_[0][2] ),
+        .I1(\rd_pntr_reg_n_0_[1] ),
+        .I2(\rd_pntr_reg_n_0_[0] ),
+        .I3(\mem_reg_n_0_[1][2] ),
         .I4(\mem_reg_n_0_[2][2] ),
         .I5(\mem_reg_n_0_[3][2] ),
         .O(\mem_reg[0][7]_0 [2]));
   LUT6 #(
-    .INIT(64'hFBF8CBC83B380B08)) 
+    .INIT(64'hFECEF2C23E0E3202)) 
     \o_y[3]_i_1 
-       (.I0(\mem_reg_n_0_[1][3] ),
-        .I1(\rd_pntr_reg_n_0_[0] ),
-        .I2(\rd_pntr_reg_n_0_[1] ),
-        .I3(\mem_reg_n_0_[0][3] ),
+       (.I0(\mem_reg_n_0_[0][3] ),
+        .I1(\rd_pntr_reg_n_0_[1] ),
+        .I2(\rd_pntr_reg_n_0_[0] ),
+        .I3(\mem_reg_n_0_[1][3] ),
         .I4(\mem_reg_n_0_[2][3] ),
         .I5(\mem_reg_n_0_[3][3] ),
         .O(\mem_reg[0][7]_0 [3]));
@@ -3083,25 +3148,24 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
        (.I0(\rd_pntr_reg_n_0_[0] ),
         .I1(\rd_pntr_reg_n_0_[1] ),
         .O(\rd_pntr[1]_i_1__0_n_0 ));
-  LUT6 #(
-    .INIT(64'h0440444444440440)) 
-    \rd_pntr[1]_i_4 
-       (.I0(PS[0]),
-        .I1(PS[1]),
-        .I2(\wr_pntr_reg_n_0_[0] ),
-        .I3(\rd_pntr_reg_n_0_[0] ),
-        .I4(\wr_pntr_reg_n_0_[1] ),
-        .I5(\rd_pntr_reg_n_0_[1] ),
-        .O(\FSM_sequential_PS_reg[0] ));
+  LUT5 #(
+    .INIT(32'h00006FF6)) 
+    \rd_pntr[1]_i_2 
+       (.I0(\wr_pntr_reg_n_0_[0] ),
+        .I1(\rd_pntr_reg_n_0_[0] ),
+        .I2(\wr_pntr_reg_n_0_[1] ),
+        .I3(\rd_pntr_reg_n_0_[1] ),
+        .I4(\rd_pntr_reg[0]_0 ),
+        .O(E));
   FDRE \rd_pntr_reg[0] 
        (.C(axi_clk),
-        .CE(\rd_pntr_reg[0]_0 ),
+        .CE(E),
         .D(\rd_pntr[0]_i_1__0_n_0 ),
         .Q(\rd_pntr_reg_n_0_[0] ),
         .R(SR));
   FDRE \rd_pntr_reg[1] 
        (.C(axi_clk),
-        .CE(\rd_pntr_reg[0]_0 ),
+        .CE(E),
         .D(\rd_pntr[1]_i_1__0_n_0 ),
         .Q(\rd_pntr_reg_n_0_[1] ),
         .R(SR));
@@ -3121,13 +3185,6 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
     \wr_pntr[0]_i_1__0 
        (.I0(\wr_pntr_reg_n_0_[0] ),
         .O(\wr_pntr[0]_i_1__0_n_0 ));
-  LUT3 #(
-    .INIT(8'h08)) 
-    \wr_pntr[1]_i_1 
-       (.I0(\wr_pntr_reg[0]_0 ),
-        .I1(s_axis_valid),
-        .I2(PS[1]),
-        .O(E));
   (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT2 #(
     .INIT(4'h6)) 
@@ -3137,13 +3194,13 @@ module design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0
         .O(\wr_pntr[1]_i_1__0_n_0 ));
   FDRE \wr_pntr_reg[0] 
        (.C(axi_clk),
-        .CE(E),
+        .CE(\wr_pntr_reg[1]_0 ),
         .D(\wr_pntr[0]_i_1__0_n_0 ),
         .Q(\wr_pntr_reg_n_0_[0] ),
         .R(SR));
   FDRE \wr_pntr_reg[1] 
        (.C(axi_clk),
-        .CE(E),
+        .CE(\wr_pntr_reg[1]_0 ),
         .D(\wr_pntr[1]_i_1__0_n_0 ),
         .Q(\wr_pntr_reg_n_0_[1] ),
         .R(SR));
@@ -3161,7 +3218,7 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
     Q,
     \a21_buffer_reg[1] ,
     \o_y_reg[7]_0 ,
-    s_axis_valid_0,
+    D,
     E,
     \o_out_reg[15]_0 ,
     \b12_buffer_reg[2] ,
@@ -3227,10 +3284,8 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
     \o_out_reg[15]_3 ,
     o_out1__59_carry__1_2,
     o_out1__59_carry__1_3,
-    \FSM_sequential_PS_reg[0] ,
-    s_axis_valid,
-    PS,
-    axi_rst_n,
+    \FSM_onehot_PS_reg[3] ,
+    \FSM_onehot_PS_reg[2] ,
     m_axis_ready,
     \o_out_reg[15]_4 ,
     \o_out_reg[15]_5 ,
@@ -3247,7 +3302,7 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
     o_out1__86_carry__1_5,
     o_out1__86_carry__1_6,
     o_out1__86_carry__1_7,
-    D,
+    \o_x_reg[7]_0 ,
     \o_y_reg[7]_4 );
   output [15:0]m_axis_data;
   output [0:0]CO;
@@ -3259,7 +3314,7 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   output [7:0]Q;
   output [3:0]\a21_buffer_reg[1] ;
   output [7:0]\o_y_reg[7]_0 ;
-  output s_axis_valid_0;
+  output [1:0]D;
   output [0:0]E;
   output [0:0]\o_out_reg[15]_0 ;
   output [3:0]\b12_buffer_reg[2] ;
@@ -3325,10 +3380,8 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   input [2:0]\o_out_reg[15]_3 ;
   input [7:0]o_out1__59_carry__1_2;
   input [7:0]o_out1__59_carry__1_3;
-  input \FSM_sequential_PS_reg[0] ;
-  input s_axis_valid;
-  input [1:0]PS;
-  input axi_rst_n;
+  input [2:0]\FSM_onehot_PS_reg[3] ;
+  input \FSM_onehot_PS_reg[2] ;
   input m_axis_ready;
   input [0:0]\o_out_reg[15]_4 ;
   input [2:0]\o_out_reg[15]_5 ;
@@ -3345,17 +3398,16 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   input [2:0]o_out1__86_carry__1_5;
   input [0:0]o_out1__86_carry__1_6;
   input [0:0]o_out1__86_carry__1_7;
-  input [7:0]D;
+  input [7:0]\o_x_reg[7]_0 ;
   input [7:0]\o_y_reg[7]_4 ;
 
   wire [0:0]CO;
-  wire [7:0]D;
+  wire [1:0]D;
   wire [2:0]DI;
   wire [0:0]E;
-  wire \FSM_sequential_PS[0]_i_2_n_0 ;
-  wire \FSM_sequential_PS_reg[0] ;
+  wire \FSM_onehot_PS_reg[2] ;
+  wire [2:0]\FSM_onehot_PS_reg[3] ;
   wire [3:0]O;
-  wire [1:0]PS;
   wire [7:0]Q;
   wire [3:0]S;
   wire [3:0]\a21_buffer_reg[1] ;
@@ -3364,7 +3416,6 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   wire [2:0]\a21_buffer_reg[3] ;
   wire [3:0]\a21_buffer_reg[5] ;
   wire axi_clk;
-  wire axi_rst_n;
   wire [3:0]\b12_buffer_reg[1] ;
   wire [1:0]\b12_buffer_reg[1]_0 ;
   wire [3:0]\b12_buffer_reg[2] ;
@@ -3582,6 +3633,7 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   wire [3:0]\o_x_reg[1]_2 ;
   wire [2:0]\o_x_reg[3]_0 ;
   wire [3:0]\o_x_reg[5]_0 ;
+  wire [7:0]\o_x_reg[7]_0 ;
   wire [3:0]\o_y_reg[1]_0 ;
   wire [1:0]\o_y_reg[1]_1 ;
   wire [3:0]\o_y_reg[2]_0 ;
@@ -3599,8 +3651,6 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   wire [7:0]\o_y_reg[7]_4 ;
   wire p_0_in;
   wire [2:0]p_0_in__0;
-  wire s_axis_valid;
-  wire s_axis_valid_0;
   wire [2:0]transaction_cnt;
   wire [3:1]NLW_o_out1__0_carry__1_CO_UNCONNECTED;
   wire [3:2]NLW_o_out1__0_carry__1_O_UNCONNECTED;
@@ -3612,25 +3662,26 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   wire [3:3]\NLW_o_out_reg[15]_i_1__0_CO_UNCONNECTED ;
   wire [3:3]\NLW_o_out_reg[15]_i_1__2_CO_UNCONNECTED ;
 
-  LUT5 #(
-    .INIT(32'hAAEA0000)) 
-    \FSM_sequential_PS[0]_i_1 
-       (.I0(\FSM_sequential_PS[0]_i_2_n_0 ),
-        .I1(\FSM_sequential_PS_reg[0] ),
-        .I2(s_axis_valid),
-        .I3(PS[1]),
-        .I4(axi_rst_n),
-        .O(s_axis_valid_0));
   LUT6 #(
-    .INIT(64'h00FF000080800000)) 
-    \FSM_sequential_PS[0]_i_2 
+    .INIT(64'h7F00FFFF7F007F00)) 
+    \FSM_onehot_PS[2]_i_1 
        (.I0(transaction_cnt[1]),
         .I1(transaction_cnt[0]),
         .I2(transaction_cnt[2]),
-        .I3(m_axis_ready),
-        .I4(PS[1]),
-        .I5(PS[0]),
-        .O(\FSM_sequential_PS[0]_i_2_n_0 ));
+        .I3(\FSM_onehot_PS_reg[3] [1]),
+        .I4(\FSM_onehot_PS_reg[2] ),
+        .I5(\FSM_onehot_PS_reg[3] [0]),
+        .O(D[0]));
+  LUT6 #(
+    .INIT(64'hF444444444444444)) 
+    \FSM_onehot_PS[3]_i_2 
+       (.I0(m_axis_ready),
+        .I1(\FSM_onehot_PS_reg[3] [2]),
+        .I2(transaction_cnt[1]),
+        .I3(transaction_cnt[0]),
+        .I4(transaction_cnt[2]),
+        .I5(\FSM_onehot_PS_reg[3] [1]),
+        .O(D[1]));
   CARRY4 o_out1__0_carry
        (.CI(1'b0),
         .CO({o_out1__0_carry_n_0,o_out1__0_carry_n_1,o_out1__0_carry_n_2,o_out1__0_carry_n_3}),
@@ -5259,49 +5310,49 @@ module design_1_SystolicArrayAxiWrap_0_0_MAC
   FDRE \o_x_reg[0] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[0]),
+        .D(\o_x_reg[7]_0 [0]),
         .Q(Q[0]),
         .R(p_0_in));
   FDRE \o_x_reg[1] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[1]),
+        .D(\o_x_reg[7]_0 [1]),
         .Q(Q[1]),
         .R(p_0_in));
   FDRE \o_x_reg[2] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[2]),
+        .D(\o_x_reg[7]_0 [2]),
         .Q(Q[2]),
         .R(p_0_in));
   FDRE \o_x_reg[3] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[3]),
+        .D(\o_x_reg[7]_0 [3]),
         .Q(Q[3]),
         .R(p_0_in));
   FDRE \o_x_reg[4] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[4]),
+        .D(\o_x_reg[7]_0 [4]),
         .Q(Q[4]),
         .R(p_0_in));
   FDRE \o_x_reg[5] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[5]),
+        .D(\o_x_reg[7]_0 [5]),
         .Q(Q[5]),
         .R(p_0_in));
   FDRE \o_x_reg[6] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[6]),
+        .D(\o_x_reg[7]_0 [6]),
         .Q(Q[6]),
         .R(p_0_in));
   FDRE \o_x_reg[7] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[7]),
+        .D(\o_x_reg[7]_0 [7]),
         .Q(Q[7]),
         .R(p_0_in));
   FDRE \o_y_reg[0] 
@@ -15418,7 +15469,7 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
     o_out1__59_carry__0_i_8,
     o_out1__59_carry__1_i_2,
     o_out1__86_carry__1_i_5,
-    s_axis_valid_0,
+    D,
     E,
     \o_out_reg[15] ,
     \o_out_reg[11] ,
@@ -15444,12 +15495,10 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
     o_out1__86_carry__1_i_3,
     o_out1__86_carry__1_i_3_0,
     \o_out_reg[15]_0 ,
-    \FSM_sequential_PS_reg[0] ,
-    s_axis_valid,
-    PS,
-    axi_rst_n,
+    Q,
+    \FSM_onehot_PS_reg[2] ,
     m_axis_ready,
-    D,
+    \b12_buffer_reg[7]_0 ,
     \o_x_reg[7] ,
     \o_x_reg[6] ,
     \o_x_reg[5] ,
@@ -15467,7 +15516,7 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   output [2:0]o_out1__59_carry__0_i_8;
   output [0:0]o_out1__59_carry__1_i_2;
   output [2:0]o_out1__86_carry__1_i_5;
-  output s_axis_valid_0;
+  output [1:0]D;
   output [0:0]E;
   output [0:0]\o_out_reg[15] ;
   output [0:0]\o_out_reg[11] ;
@@ -15493,12 +15542,10 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   input [0:0]o_out1__86_carry__1_i_3;
   input [0:0]o_out1__86_carry__1_i_3_0;
   input [2:0]\o_out_reg[15]_0 ;
-  input \FSM_sequential_PS_reg[0] ;
-  input s_axis_valid;
-  input [1:0]PS;
-  input axi_rst_n;
+  input [2:0]Q;
+  input \FSM_onehot_PS_reg[2] ;
   input m_axis_ready;
-  input [7:0]D;
+  input [7:0]\b12_buffer_reg[7]_0 ;
   input \o_x_reg[7] ;
   input \o_x_reg[6] ;
   input \o_x_reg[5] ;
@@ -15513,12 +15560,12 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
 
   wire [7:0]A;
   wire [0:0]CO;
-  wire [7:0]D;
+  wire [1:0]D;
   wire [2:0]DI;
   wire [0:0]E;
-  wire \FSM_sequential_PS_reg[0] ;
+  wire \FSM_onehot_PS_reg[2] ;
   wire [3:0]O;
-  wire [1:0]PS;
+  wire [2:0]Q;
   wire [3:0]S;
   wire [7:0]\a21_buffer_reg[7]_0 ;
   wire \a21_buffer_reg_n_0_[0] ;
@@ -15540,8 +15587,8 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   wire \a31_buffer2_reg_n_0_[6] ;
   wire \a31_buffer2_reg_n_0_[7] ;
   wire axi_clk;
-  wire axi_rst_n;
   wire [7:0]b12_buffer;
+  wire [7:0]\b12_buffer_reg[7]_0 ;
   wire [7:0]b13_buffer1;
   wire [7:0]\b13_buffer1_reg[7]_0 ;
   wire [7:0]b13_buffer2;
@@ -15568,7 +15615,7 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   wire mac11_n_118;
   wire mac11_n_119;
   wire mac11_n_120;
-  wire mac11_n_122;
+  wire mac11_n_121;
   wire mac11_n_123;
   wire mac11_n_124;
   wire mac11_n_125;
@@ -15616,6 +15663,7 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   wire mac11_n_167;
   wire mac11_n_168;
   wire mac11_n_169;
+  wire mac11_n_170;
   wire mac11_n_26;
   wire mac11_n_27;
   wire mac11_n_28;
@@ -15624,7 +15672,6 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   wire mac11_n_39;
   wire mac11_n_40;
   wire mac11_n_41;
-  wire mac11_n_53;
   wire mac11_n_54;
   wire mac11_n_55;
   wire mac11_n_56;
@@ -16254,8 +16301,6 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   wire [7:0]o_y;
   wire [7:0]\o_y_reg[7] ;
   wire p_0_in;
-  wire s_axis_valid;
-  wire s_axis_valid_0;
 
   FDRE \a21_buffer_reg[0] 
        (.C(axi_clk),
@@ -16404,49 +16449,49 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
   FDRE \b12_buffer_reg[0] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[0]),
+        .D(\b12_buffer_reg[7]_0 [0]),
         .Q(b12_buffer[0]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[1] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[1]),
+        .D(\b12_buffer_reg[7]_0 [1]),
         .Q(b12_buffer[1]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[2] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[2]),
+        .D(\b12_buffer_reg[7]_0 [2]),
         .Q(b12_buffer[2]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[3] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[3]),
+        .D(\b12_buffer_reg[7]_0 [3]),
         .Q(b12_buffer[3]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[4] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[4]),
+        .D(\b12_buffer_reg[7]_0 [4]),
         .Q(b12_buffer[4]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[5] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[5]),
+        .D(\b12_buffer_reg[7]_0 [5]),
         .Q(b12_buffer[5]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[6] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[6]),
+        .D(\b12_buffer_reg[7]_0 [6]),
         .Q(b12_buffer[6]),
         .R(p_0_in));
   FDRE \b12_buffer_reg[7] 
        (.C(axi_clk),
         .CE(1'b1),
-        .D(D[7]),
+        .D(\b12_buffer_reg[7]_0 [7]),
         .Q(b12_buffer[7]),
         .R(p_0_in));
   FDRE \b13_buffer1_reg[0] 
@@ -16547,40 +16592,39 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
         .R(p_0_in));
   design_1_SystolicArrayAxiWrap_0_0_MAC mac11
        (.CO(CO),
-        .D({\o_x_reg[7] ,\o_x_reg[6] ,\o_x_reg[5] ,\o_x_reg[4] ,\o_x_reg[3] ,\o_x_reg[2] ,\o_x_reg[1] }),
+        .D(D),
         .DI(DI),
         .E(E),
-        .\FSM_sequential_PS_reg[0] (\FSM_sequential_PS_reg[0] ),
+        .\FSM_onehot_PS_reg[2] (\FSM_onehot_PS_reg[2] ),
+        .\FSM_onehot_PS_reg[3] (Q),
         .O(O),
-        .PS(PS),
         .Q(A),
         .S(S),
         .\a21_buffer_reg[1] ({mac11_n_38,mac11_n_39,mac11_n_40,mac11_n_41}),
-        .\a21_buffer_reg[1]_0 ({mac11_n_106,mac11_n_107,mac11_n_108,mac11_n_109}),
-        .\a21_buffer_reg[1]_1 ({mac11_n_112,mac11_n_113,mac11_n_114,mac11_n_115}),
-        .\a21_buffer_reg[3] ({mac11_n_91,mac11_n_92,mac11_n_93}),
-        .\a21_buffer_reg[5] ({mac11_n_162,mac11_n_163,mac11_n_164,mac11_n_165}),
+        .\a21_buffer_reg[1]_0 ({mac11_n_107,mac11_n_108,mac11_n_109,mac11_n_110}),
+        .\a21_buffer_reg[1]_1 ({mac11_n_113,mac11_n_114,mac11_n_115,mac11_n_116}),
+        .\a21_buffer_reg[3] ({mac11_n_92,mac11_n_93,mac11_n_94}),
+        .\a21_buffer_reg[5] ({mac11_n_163,mac11_n_164,mac11_n_165,mac11_n_166}),
         .axi_clk(axi_clk),
-        .axi_rst_n(axi_rst_n),
-        .\b12_buffer_reg[1] ({mac11_n_130,mac11_n_131,mac11_n_132,mac11_n_133}),
-        .\b12_buffer_reg[1]_0 ({mac11_n_134,mac11_n_135}),
-        .\b12_buffer_reg[2] ({mac11_n_53,mac11_n_54,mac11_n_55,mac11_n_56}),
-        .\b12_buffer_reg[2]_0 ({mac11_n_70,mac11_n_71}),
-        .\b12_buffer_reg[3] ({mac11_n_64,mac11_n_65,mac11_n_66}),
-        .\b12_buffer_reg[4] ({mac11_n_136,mac11_n_137,mac11_n_138,mac11_n_139}),
-        .\b12_buffer_reg[4]_0 ({mac11_n_140,mac11_n_141}),
-        .\b12_buffer_reg[5] ({mac11_n_60,mac11_n_61,mac11_n_62,mac11_n_63}),
-        .\b12_buffer_reg[5]_0 ({mac11_n_76,mac11_n_77}),
-        .\b12_buffer_reg[6] (mac11_n_146),
-        .\b12_buffer_reg[7] ({mac11_n_67,mac11_n_68,mac11_n_69}),
-        .\b12_buffer_reg[7]_0 ({mac11_n_82,mac11_n_83,mac11_n_84,mac11_n_85}),
-        .\b12_buffer_reg[7]_1 (mac11_n_86),
+        .\b12_buffer_reg[1] ({mac11_n_131,mac11_n_132,mac11_n_133,mac11_n_134}),
+        .\b12_buffer_reg[1]_0 ({mac11_n_135,mac11_n_136}),
+        .\b12_buffer_reg[2] ({mac11_n_54,mac11_n_55,mac11_n_56,mac11_n_57}),
+        .\b12_buffer_reg[2]_0 ({mac11_n_71,mac11_n_72}),
+        .\b12_buffer_reg[3] ({mac11_n_65,mac11_n_66,mac11_n_67}),
+        .\b12_buffer_reg[4] ({mac11_n_137,mac11_n_138,mac11_n_139,mac11_n_140}),
+        .\b12_buffer_reg[4]_0 ({mac11_n_141,mac11_n_142}),
+        .\b12_buffer_reg[5] ({mac11_n_61,mac11_n_62,mac11_n_63,mac11_n_64}),
+        .\b12_buffer_reg[5]_0 ({mac11_n_77,mac11_n_78}),
+        .\b12_buffer_reg[6] (mac11_n_147),
+        .\b12_buffer_reg[7] ({mac11_n_68,mac11_n_69,mac11_n_70}),
+        .\b12_buffer_reg[7]_0 ({mac11_n_83,mac11_n_84,mac11_n_85,mac11_n_86}),
+        .\b12_buffer_reg[7]_1 (mac11_n_87),
         .m_axis_data(m_axis_data[15:0]),
         .m_axis_ready(m_axis_ready),
         .o_out1__30_carry__1_i_4(o_out1__30_carry__1_i_4),
         .o_out1__59_carry__0_i_8(o_out1__59_carry__0_i_8),
-        .o_out1__59_carry__1_0({mac11_n_147,mac11_n_148,mac11_n_149}),
-        .o_out1__59_carry__1_1({mac11_n_167,mac11_n_168,mac11_n_169}),
+        .o_out1__59_carry__1_0({mac11_n_148,mac11_n_149,mac11_n_150}),
+        .o_out1__59_carry__1_1({mac11_n_168,mac11_n_169,mac11_n_170}),
         .o_out1__59_carry__1_2(b12_buffer),
         .o_out1__59_carry__1_3({\a21_buffer_reg_n_0_[7] ,\a21_buffer_reg_n_0_[6] ,\a21_buffer_reg_n_0_[5] ,\a21_buffer_reg_n_0_[4] ,\a21_buffer_reg_n_0_[3] ,\a21_buffer_reg_n_0_[2] ,\a21_buffer_reg_n_0_[1] ,\a21_buffer_reg_n_0_[0] }),
         .o_out1__59_carry__1_i_2(o_out1__59_carry__1_i_2),
@@ -16611,9 +16655,9 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
         .\o_out[3]_i_2_1 (\o_out[3]_i_2_0 ),
         .\o_out_reg[11]_0 (\o_out_reg[11] ),
         .\o_out_reg[15]_0 (\o_out_reg[15] ),
-        .\o_out_reg[15]_1 ({mac11_n_122,mac11_n_123,mac11_n_124,mac11_n_125}),
+        .\o_out_reg[15]_1 ({mac11_n_123,mac11_n_124,mac11_n_125,mac11_n_126}),
         .\o_out_reg[15]_10 ({m_axis_data[62:60],m_axis_data[30:28]}),
-        .\o_out_reg[15]_2 ({mac11_n_126,mac11_n_127,mac11_n_128,mac11_n_129}),
+        .\o_out_reg[15]_2 ({mac11_n_127,mac11_n_128,mac11_n_129,mac11_n_130}),
         .\o_out_reg[15]_3 (\o_out_reg[15]_0 ),
         .\o_out_reg[15]_4 (mac12_n_94),
         .\o_out_reg[15]_5 ({mac12_n_23,mac12_n_24,mac12_n_25}),
@@ -16622,28 +16666,27 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
         .\o_out_reg[15]_8 ({mac21_n_23,mac21_n_24,mac21_n_25}),
         .\o_out_reg[15]_9 (mac21_n_40),
         .\o_x_reg[1]_0 ({mac11_n_26,mac11_n_27,mac11_n_28,mac11_n_29}),
-        .\o_x_reg[1]_1 ({mac11_n_72,mac11_n_73,mac11_n_74,mac11_n_75}),
-        .\o_x_reg[1]_2 ({mac11_n_78,mac11_n_79,mac11_n_80,mac11_n_81}),
-        .\o_x_reg[3]_0 ({mac11_n_57,mac11_n_58,mac11_n_59}),
-        .\o_x_reg[5]_0 ({mac11_n_142,mac11_n_143,mac11_n_144,mac11_n_145}),
-        .\o_y_reg[1]_0 ({mac11_n_150,mac11_n_151,mac11_n_152,mac11_n_153}),
-        .\o_y_reg[1]_1 ({mac11_n_154,mac11_n_155}),
-        .\o_y_reg[2]_0 ({mac11_n_87,mac11_n_88,mac11_n_89,mac11_n_90}),
-        .\o_y_reg[2]_1 ({mac11_n_104,mac11_n_105}),
-        .\o_y_reg[3]_0 ({mac11_n_98,mac11_n_99,mac11_n_100}),
-        .\o_y_reg[4]_0 ({mac11_n_156,mac11_n_157,mac11_n_158,mac11_n_159}),
-        .\o_y_reg[4]_1 ({mac11_n_160,mac11_n_161}),
-        .\o_y_reg[5]_0 ({mac11_n_94,mac11_n_95,mac11_n_96,mac11_n_97}),
-        .\o_y_reg[5]_1 ({mac11_n_110,mac11_n_111}),
-        .\o_y_reg[6]_0 (mac11_n_166),
+        .\o_x_reg[1]_1 ({mac11_n_73,mac11_n_74,mac11_n_75,mac11_n_76}),
+        .\o_x_reg[1]_2 ({mac11_n_79,mac11_n_80,mac11_n_81,mac11_n_82}),
+        .\o_x_reg[3]_0 ({mac11_n_58,mac11_n_59,mac11_n_60}),
+        .\o_x_reg[5]_0 ({mac11_n_143,mac11_n_144,mac11_n_145,mac11_n_146}),
+        .\o_x_reg[7]_0 ({\o_x_reg[7] ,\o_x_reg[6] ,\o_x_reg[5] ,\o_x_reg[4] ,\o_x_reg[3] ,\o_x_reg[2] ,\o_x_reg[1] }),
+        .\o_y_reg[1]_0 ({mac11_n_151,mac11_n_152,mac11_n_153,mac11_n_154}),
+        .\o_y_reg[1]_1 ({mac11_n_155,mac11_n_156}),
+        .\o_y_reg[2]_0 ({mac11_n_88,mac11_n_89,mac11_n_90,mac11_n_91}),
+        .\o_y_reg[2]_1 ({mac11_n_105,mac11_n_106}),
+        .\o_y_reg[3]_0 ({mac11_n_99,mac11_n_100,mac11_n_101}),
+        .\o_y_reg[4]_0 ({mac11_n_157,mac11_n_158,mac11_n_159,mac11_n_160}),
+        .\o_y_reg[4]_1 ({mac11_n_161,mac11_n_162}),
+        .\o_y_reg[5]_0 ({mac11_n_95,mac11_n_96,mac11_n_97,mac11_n_98}),
+        .\o_y_reg[5]_1 ({mac11_n_111,mac11_n_112}),
+        .\o_y_reg[6]_0 (mac11_n_167),
         .\o_y_reg[7]_0 (o_y),
-        .\o_y_reg[7]_1 ({mac11_n_101,mac11_n_102,mac11_n_103}),
-        .\o_y_reg[7]_2 ({mac11_n_116,mac11_n_117,mac11_n_118,mac11_n_119}),
-        .\o_y_reg[7]_3 (mac11_n_120),
+        .\o_y_reg[7]_1 ({mac11_n_102,mac11_n_103,mac11_n_104}),
+        .\o_y_reg[7]_2 ({mac11_n_117,mac11_n_118,mac11_n_119,mac11_n_120}),
+        .\o_y_reg[7]_3 (mac11_n_121),
         .\o_y_reg[7]_4 (\o_y_reg[7] ),
-        .p_0_in(p_0_in),
-        .s_axis_valid(s_axis_valid),
-        .s_axis_valid_0(s_axis_valid_0));
+        .p_0_in(p_0_in));
   design_1_SystolicArrayAxiWrap_0_0_MAC_1 mac12
        (.CO(mac13_n_56),
         .D(A),
@@ -16677,12 +16720,12 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
         .o_out1__59_carry__1_0({mac12_n_120,mac12_n_121,mac12_n_122}),
         .o_out1__59_carry__1_1({mac12_n_141,mac12_n_142,mac12_n_143}),
         .o_out1__59_carry__1_2({mac21_n_28,mac21_n_29,mac21_n_30,mac21_n_31,mac21_n_32,mac21_n_33,mac21_n_34,mac21_n_35}),
-        .o_out1__86_carry__0_i_3__0_0({mac11_n_70,mac11_n_71}),
-        .o_out1__86_carry__0_i_3__0_1({mac11_n_134,mac11_n_135}),
-        .o_out1__86_carry__0_i_4__0_0({mac11_n_60,mac11_n_61,mac11_n_62,mac11_n_63}),
-        .o_out1__86_carry__0_i_4__0_1({mac11_n_136,mac11_n_137,mac11_n_138,mac11_n_139}),
-        .o_out1__86_carry__0_i_6__0_0({mac11_n_82,mac11_n_83,mac11_n_84,mac11_n_85}),
-        .o_out1__86_carry__0_i_6__0_1({mac11_n_142,mac11_n_143,mac11_n_144,mac11_n_145}),
+        .o_out1__86_carry__0_i_3__0_0({mac11_n_71,mac11_n_72}),
+        .o_out1__86_carry__0_i_3__0_1({mac11_n_135,mac11_n_136}),
+        .o_out1__86_carry__0_i_4__0_0({mac11_n_61,mac11_n_62,mac11_n_63,mac11_n_64}),
+        .o_out1__86_carry__0_i_4__0_1({mac11_n_137,mac11_n_138,mac11_n_139,mac11_n_140}),
+        .o_out1__86_carry__0_i_6__0_0({mac11_n_83,mac11_n_84,mac11_n_85,mac11_n_86}),
+        .o_out1__86_carry__0_i_6__0_1({mac11_n_143,mac11_n_144,mac11_n_145,mac11_n_146}),
         .o_out1__86_carry__1_0({mac13_n_17,mac13_n_18}),
         .o_out1__86_carry__1_1({mac13_n_19,mac13_n_20,mac13_n_21}),
         .o_out1__86_carry__1_2(mac13_n_16),
@@ -16691,30 +16734,30 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
         .o_out1__86_carry__1_5({mac22_n_19,mac22_n_20,mac22_n_21}),
         .o_out1__86_carry__1_6(mac22_n_16),
         .o_out1__86_carry__1_7(mac22_n_22),
-        .o_out1__86_carry__1_i_3__0(mac11_n_86),
-        .o_out1__86_carry__1_i_3__0_0(mac11_n_146),
+        .o_out1__86_carry__1_i_3__0(mac11_n_87),
+        .o_out1__86_carry__1_i_3__0_0(mac11_n_147),
         .o_out1__86_carry__1_i_5__0({mac12_n_23,mac12_n_24,mac12_n_25}),
-        .o_out1__86_carry__1_i_5__0_0({mac11_n_76,mac11_n_77}),
-        .o_out1__86_carry__1_i_5__0_1({mac11_n_140,mac11_n_141}),
-        .o_out1__86_carry_i_1__0_0({mac11_n_67,mac11_n_68,mac11_n_69}),
+        .o_out1__86_carry__1_i_5__0_0({mac11_n_77,mac11_n_78}),
+        .o_out1__86_carry__1_i_5__0_1({mac11_n_141,mac11_n_142}),
+        .o_out1__86_carry_i_1__0_0({mac11_n_68,mac11_n_69,mac11_n_70}),
         .o_out1__86_carry_i_1__0_1({mac11_n_26,mac11_n_27,mac11_n_28,mac11_n_29}),
-        .o_out1__86_carry_i_8__0_0({mac11_n_53,mac11_n_54,mac11_n_55,mac11_n_56}),
-        .o_out1__86_carry_i_8__0_1({mac11_n_130,mac11_n_131,mac11_n_132,mac11_n_133}),
-        .\o_out[3]_i_2__0_0 ({mac11_n_64,mac11_n_65,mac11_n_66}),
-        .\o_out[3]_i_2__0_1 ({mac11_n_78,mac11_n_79,mac11_n_80,mac11_n_81}),
+        .o_out1__86_carry_i_8__0_0({mac11_n_54,mac11_n_55,mac11_n_56,mac11_n_57}),
+        .o_out1__86_carry_i_8__0_1({mac11_n_131,mac11_n_132,mac11_n_133,mac11_n_134}),
+        .\o_out[3]_i_2__0_0 ({mac11_n_65,mac11_n_66,mac11_n_67}),
+        .\o_out[3]_i_2__0_1 ({mac11_n_79,mac11_n_80,mac11_n_81,mac11_n_82}),
         .\o_out_reg[11]_0 (mac12_n_94),
         .\o_out_reg[15]_0 (mac12_n_30),
         .\o_out_reg[15]_1 ({mac12_n_99,mac12_n_100,mac12_n_101,mac12_n_102}),
-        .\o_out_reg[15]_2 ({mac11_n_122,mac11_n_123,mac11_n_124,mac11_n_125}),
-        .\o_out_reg[15]_3 ({mac11_n_147,mac11_n_148,mac11_n_149}),
+        .\o_out_reg[15]_2 ({mac11_n_123,mac11_n_124,mac11_n_125,mac11_n_126}),
+        .\o_out_reg[15]_3 ({mac11_n_148,mac11_n_149,mac11_n_150}),
         .\o_out_reg[15]_4 ({mac13_n_23,mac13_n_24,mac13_n_25}),
         .\o_out_reg[15]_5 (mac13_n_26),
         .\o_out_reg[15]_6 (mac22_n_78),
         .\o_out_reg[15]_7 ({mac22_n_23,mac22_n_24,mac22_n_25}),
         .\o_out_reg[15]_8 (mac22_n_36),
         .\o_out_reg[15]_9 ({m_axis_data[78:76],m_axis_data[46:44]}),
-        .\o_out_reg[3]_0 ({mac11_n_57,mac11_n_58,mac11_n_59}),
-        .\o_out_reg[3]_1 ({mac11_n_72,mac11_n_73,mac11_n_74,mac11_n_75}),
+        .\o_out_reg[3]_0 ({mac11_n_58,mac11_n_59,mac11_n_60}),
+        .\o_out_reg[3]_1 ({mac11_n_73,mac11_n_74,mac11_n_75,mac11_n_76}),
         .\o_x_reg[1]_0 ({mac12_n_50,mac12_n_51,mac12_n_52,mac12_n_53}),
         .\o_x_reg[1]_1 ({mac12_n_56,mac12_n_57,mac12_n_58,mac12_n_59}),
         .\o_x_reg[1]_2 ({mac12_n_130,mac12_n_131}),
@@ -16822,36 +16865,36 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArray
         .o_out1__59_carry_0({mac12_n_69,mac12_n_70,mac12_n_71,mac12_n_72,mac12_n_73,mac12_n_74,mac12_n_75,mac12_n_76}),
         .o_out1__59_carry__1_0({mac21_n_116,mac21_n_117,mac21_n_118}),
         .o_out1__59_carry__1_1({\a31_buffer2_reg_n_0_[7] ,\a31_buffer2_reg_n_0_[6] ,\a31_buffer2_reg_n_0_[5] ,\a31_buffer2_reg_n_0_[4] ,\a31_buffer2_reg_n_0_[3] ,\a31_buffer2_reg_n_0_[2] ,\a31_buffer2_reg_n_0_[1] ,\a31_buffer2_reg_n_0_[0] }),
-        .o_out1__86_carry__0_i_3__2_0({mac11_n_104,mac11_n_105}),
-        .o_out1__86_carry__0_i_3__2_1({mac11_n_154,mac11_n_155}),
-        .o_out1__86_carry__0_i_4__2_0({mac11_n_94,mac11_n_95,mac11_n_96,mac11_n_97}),
-        .o_out1__86_carry__0_i_4__2_1({mac11_n_156,mac11_n_157,mac11_n_158,mac11_n_159}),
-        .o_out1__86_carry__0_i_6__2_0({mac11_n_116,mac11_n_117,mac11_n_118,mac11_n_119}),
-        .o_out1__86_carry__0_i_6__2_1({mac11_n_162,mac11_n_163,mac11_n_164,mac11_n_165}),
+        .o_out1__86_carry__0_i_3__2_0({mac11_n_105,mac11_n_106}),
+        .o_out1__86_carry__0_i_3__2_1({mac11_n_155,mac11_n_156}),
+        .o_out1__86_carry__0_i_4__2_0({mac11_n_95,mac11_n_96,mac11_n_97,mac11_n_98}),
+        .o_out1__86_carry__0_i_4__2_1({mac11_n_157,mac11_n_158,mac11_n_159,mac11_n_160}),
+        .o_out1__86_carry__0_i_6__2_0({mac11_n_117,mac11_n_118,mac11_n_119,mac11_n_120}),
+        .o_out1__86_carry__0_i_6__2_1({mac11_n_163,mac11_n_164,mac11_n_165,mac11_n_166}),
         .o_out1__86_carry__1_0({mac31_n_17,mac31_n_18}),
         .o_out1__86_carry__1_1({mac31_n_19,mac31_n_20,mac31_n_21}),
         .o_out1__86_carry__1_2(mac31_n_16),
         .o_out1__86_carry__1_3(mac31_n_22),
-        .o_out1__86_carry__1_i_3__2(mac11_n_120),
-        .o_out1__86_carry__1_i_3__2_0(mac11_n_166),
+        .o_out1__86_carry__1_i_3__2(mac11_n_121),
+        .o_out1__86_carry__1_i_3__2_0(mac11_n_167),
         .o_out1__86_carry__1_i_5__2({mac21_n_23,mac21_n_24,mac21_n_25}),
-        .o_out1__86_carry__1_i_5__2_0({mac11_n_110,mac11_n_111}),
-        .o_out1__86_carry__1_i_5__2_1({mac11_n_160,mac11_n_161}),
-        .o_out1__86_carry_i_1__2_0({mac11_n_101,mac11_n_102,mac11_n_103}),
+        .o_out1__86_carry__1_i_5__2_0({mac11_n_111,mac11_n_112}),
+        .o_out1__86_carry__1_i_5__2_1({mac11_n_161,mac11_n_162}),
+        .o_out1__86_carry_i_1__2_0({mac11_n_102,mac11_n_103,mac11_n_104}),
         .o_out1__86_carry_i_1__2_1({mac11_n_38,mac11_n_39,mac11_n_40,mac11_n_41}),
-        .o_out1__86_carry_i_8__2_0({mac11_n_87,mac11_n_88,mac11_n_89,mac11_n_90}),
-        .o_out1__86_carry_i_8__2_1({mac11_n_150,mac11_n_151,mac11_n_152,mac11_n_153}),
-        .\o_out[3]_i_2__2_0 ({mac11_n_98,mac11_n_99,mac11_n_100}),
-        .\o_out[3]_i_2__2_1 ({mac11_n_112,mac11_n_113,mac11_n_114,mac11_n_115}),
+        .o_out1__86_carry_i_8__2_0({mac11_n_88,mac11_n_89,mac11_n_90,mac11_n_91}),
+        .o_out1__86_carry_i_8__2_1({mac11_n_151,mac11_n_152,mac11_n_153,mac11_n_154}),
+        .\o_out[3]_i_2__2_0 ({mac11_n_99,mac11_n_100,mac11_n_101}),
+        .\o_out[3]_i_2__2_1 ({mac11_n_113,mac11_n_114,mac11_n_115,mac11_n_116}),
         .\o_out_reg[11]_0 (mac21_n_87),
         .\o_out_reg[15]_0 (mac21_n_40),
-        .\o_out_reg[15]_1 ({mac11_n_126,mac11_n_127,mac11_n_128,mac11_n_129}),
-        .\o_out_reg[15]_2 ({mac11_n_167,mac11_n_168,mac11_n_169}),
+        .\o_out_reg[15]_1 ({mac11_n_127,mac11_n_128,mac11_n_129,mac11_n_130}),
+        .\o_out_reg[15]_2 ({mac11_n_168,mac11_n_169,mac11_n_170}),
         .\o_out_reg[15]_3 ({mac31_n_23,mac31_n_24,mac31_n_25}),
         .\o_out_reg[15]_4 (mac31_n_36),
         .\o_out_reg[15]_5 (m_axis_data[110:108]),
-        .\o_out_reg[3]_0 ({mac11_n_91,mac11_n_92,mac11_n_93}),
-        .\o_out_reg[3]_1 ({mac11_n_106,mac11_n_107,mac11_n_108,mac11_n_109}),
+        .\o_out_reg[3]_0 ({mac11_n_92,mac11_n_93,mac11_n_94}),
+        .\o_out_reg[3]_1 ({mac11_n_107,mac11_n_108,mac11_n_109,mac11_n_110}),
         .\o_x_reg[0]_0 (mac21_n_46),
         .\o_x_reg[0]_1 ({mac21_n_51,mac21_n_52}),
         .\o_x_reg[1]_0 ({mac21_n_43,mac21_n_44}),
@@ -17156,26 +17199,24 @@ endmodule
 (* ORIG_REF_NAME = "SystolicArrayAxiWrapper" *) 
 module design_1_SystolicArrayAxiWrap_0_0_SystolicArrayAxiWrapper
    (\wr_pntr_reg[0] ,
-    m_axis_data,
     m_axis_valid,
-    m_axis_ready,
-    axi_rst_n,
+    m_axis_data,
     s_axis_valid,
     axi_clk,
-    s_axis_data);
+    s_axis_data,
+    m_axis_ready,
+    axi_rst_n);
   output \wr_pntr_reg[0] ;
-  output [143:0]m_axis_data;
   output m_axis_valid;
-  input m_axis_ready;
-  input axi_rst_n;
+  output [143:0]m_axis_data;
   input s_axis_valid;
   input axi_clk;
   input [47:0]s_axis_data;
+  input m_axis_ready;
+  input axi_rst_n;
 
   wire [7:0]A21;
   wire [7:0]A31;
-  wire A_Buffer_n_0;
-  wire A_Buffer_n_1;
   wire A_Buffer_n_10;
   wire A_Buffer_n_11;
   wire A_Buffer_n_12;
@@ -17201,10 +17242,10 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArrayAxiWrapper
   wire A_Buffer_n_30;
   wire A_Buffer_n_31;
   wire A_Buffer_n_32;
+  wire A_Buffer_n_33;
+  wire A_Buffer_n_34;
   wire A_Buffer_n_4;
-  wire A_Buffer_n_49;
   wire A_Buffer_n_5;
-  wire A_Buffer_n_50;
   wire A_Buffer_n_51;
   wire A_Buffer_n_52;
   wire A_Buffer_n_53;
@@ -17214,8 +17255,11 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArrayAxiWrapper
   wire A_Buffer_n_57;
   wire A_Buffer_n_58;
   wire A_Buffer_n_59;
+  wire A_Buffer_n_6;
   wire A_Buffer_n_60;
   wire A_Buffer_n_61;
+  wire A_Buffer_n_62;
+  wire A_Buffer_n_63;
   wire A_Buffer_n_7;
   wire A_Buffer_n_8;
   wire A_Buffer_n_9;
@@ -17229,14 +17273,13 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArrayAxiWrapper
   wire Array_n_151;
   wire Array_n_152;
   wire Array_n_153;
-  wire Array_n_154;
-  wire Array_n_155;
   wire Array_n_156;
   wire Array_n_157;
+  wire Array_n_158;
   wire [7:0]B12;
   wire [7:0]B13;
+  wire B_Buffer_n_18;
   wire B_Buffer_n_19;
-  wire B_Buffer_n_2;
   wire B_Buffer_n_20;
   wire B_Buffer_n_21;
   wire B_Buffer_n_22;
@@ -17284,9 +17327,10 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArrayAxiWrapper
   wire B_Buffer_n_64;
   wire B_Buffer_n_65;
   wire B_Buffer_n_66;
-  wire B_Buffer_n_67;
-  wire Controller_n_2;
-  wire [1:0]PS;
+  wire Controller_n_5;
+  wire Controller_n_6;
+  wire [3:2]NS;
+  wire [2:0]PS;
   wire axi_clk;
   wire axi_rst_n;
   wire [143:0]m_axis_data;
@@ -17296,182 +17340,185 @@ module design_1_SystolicArrayAxiWrap_0_0_SystolicArrayAxiWrapper
   wire rd_pntr0;
   wire [47:0]s_axis_data;
   wire s_axis_valid;
+  wire [1:0]wr_pntr;
   wire wr_pntr0;
   wire \wr_pntr_reg[0] ;
 
   design_1_SystolicArrayAxiWrap_0_0_InputBuffer A_Buffer
        (.D(A21),
-        .DI({A_Buffer_n_7,A_Buffer_n_8,A_Buffer_n_9,A_Buffer_n_10}),
-        .E(rd_pntr0),
-        .PS(PS[1]),
-        .S({A_Buffer_n_0,A_Buffer_n_1}),
-        .SR(Controller_n_2),
+        .DI({A_Buffer_n_9,A_Buffer_n_10,A_Buffer_n_11,A_Buffer_n_12}),
+        .E(Array_n_156),
+        .Q(wr_pntr),
+        .S({A_Buffer_n_2,A_Buffer_n_3}),
+        .SR(Controller_n_5),
         .axi_clk(axi_clk),
-        .\mem_reg[1][1]_0 ({A_Buffer_n_49,A_Buffer_n_50}),
+        .\mem_reg[0][1]_0 ({A_Buffer_n_51,A_Buffer_n_52}),
+        .\mem_reg[0][23]_0 (Controller_n_6),
+        .\mem_reg[1][0]_0 (\wr_pntr_reg[0] ),
+        .\mem_reg[2][0]_0 (A_Buffer_n_18),
+        .\mem_reg[2][0]_1 (A_Buffer_n_24),
         .\mem_reg[2][23]_0 (A31),
-        .\mem_reg[2][7]_0 (A_Buffer_n_18),
-        .\mem_reg[3][0]_0 (A_Buffer_n_16),
-        .\mem_reg[3][0]_1 (A_Buffer_n_22),
-        .\mem_reg[3][0]_2 (\wr_pntr_reg[0] ),
-        .\mem_reg[3][1]_0 (A_Buffer_n_2),
-        .\mem_reg[3][1]_1 ({A_Buffer_n_14,A_Buffer_n_15}),
-        .\mem_reg[3][2]_0 (A_Buffer_n_4),
-        .\mem_reg[3][2]_1 ({A_Buffer_n_23,A_Buffer_n_24,A_Buffer_n_25}),
-        .\mem_reg[3][2]_2 ({A_Buffer_n_51,A_Buffer_n_52,A_Buffer_n_53}),
-        .\mem_reg[3][3]_0 (A_Buffer_n_3),
-        .\mem_reg[3][3]_1 (A_Buffer_n_21),
-        .\mem_reg[3][3]_2 ({A_Buffer_n_30,A_Buffer_n_31}),
-        .\mem_reg[3][3]_3 (A_Buffer_n_32),
-        .\mem_reg[3][4]_0 (A_Buffer_n_13),
-        .\mem_reg[3][4]_1 ({A_Buffer_n_19,A_Buffer_n_20}),
-        .\mem_reg[3][4]_2 ({A_Buffer_n_28,A_Buffer_n_29}),
-        .\mem_reg[3][5]_0 (A_Buffer_n_11),
-        .\mem_reg[3][5]_1 (A_Buffer_n_26),
-        .\mem_reg[3][5]_2 ({A_Buffer_n_58,A_Buffer_n_59,A_Buffer_n_60,A_Buffer_n_61}),
-        .\mem_reg[3][6]_0 (A_Buffer_n_12),
-        .\mem_reg[3][6]_1 (A_Buffer_n_17),
-        .\mem_reg[3][6]_2 (A_Buffer_n_27),
-        .\mem_reg[3][6]_3 ({A_Buffer_n_54,A_Buffer_n_55}),
-        .\mem_reg[3][6]_4 ({A_Buffer_n_56,A_Buffer_n_57}),
-        .o_out1__0_carry(B_Buffer_n_41),
-        .o_out1__0_carry_0(B_Buffer_n_40),
-        .o_out1__0_carry_1(B_Buffer_n_30),
-        .o_out1__0_carry_2(B_Buffer_n_44),
-        .o_out1__0_carry__0(B_Buffer_n_45),
-        .o_out1__0_carry__0_0(B_Buffer_n_46),
-        .o_out1__30_carry(B_Buffer_n_32),
-        .o_out1__30_carry__0(B_Buffer_n_33),
-        .o_out1__30_carry_i_4_0(B_Buffer_n_34),
-        .o_out1__59_carry(B_Buffer_n_21),
-        .o_out1__59_carry_0(B_Buffer_n_20),
-        .\rd_pntr_reg[0]_0 (A_Buffer_n_5),
-        .\rd_pntr_reg[1]_0 (B_Buffer_n_2),
-        .\rd_pntr_reg[1]_1 (Array_n_155),
+        .\mem_reg[2][4]_0 (A_Buffer_n_15),
+        .\mem_reg[2][4]_1 ({A_Buffer_n_21,A_Buffer_n_22}),
+        .\mem_reg[2][4]_2 ({A_Buffer_n_30,A_Buffer_n_31}),
+        .\mem_reg[2][7]_0 (A_Buffer_n_20),
+        .\mem_reg[3][1]_0 (A_Buffer_n_4),
+        .\mem_reg[3][1]_1 ({A_Buffer_n_16,A_Buffer_n_17}),
+        .\mem_reg[3][2]_0 (A_Buffer_n_6),
+        .\mem_reg[3][2]_1 ({A_Buffer_n_25,A_Buffer_n_26,A_Buffer_n_27}),
+        .\mem_reg[3][2]_2 ({A_Buffer_n_53,A_Buffer_n_54,A_Buffer_n_55}),
+        .\mem_reg[3][3]_0 (A_Buffer_n_5),
+        .\mem_reg[3][3]_1 (A_Buffer_n_23),
+        .\mem_reg[3][3]_2 ({A_Buffer_n_32,A_Buffer_n_33}),
+        .\mem_reg[3][3]_3 (A_Buffer_n_34),
+        .\mem_reg[3][5]_0 (A_Buffer_n_13),
+        .\mem_reg[3][5]_1 (A_Buffer_n_28),
+        .\mem_reg[3][5]_2 ({A_Buffer_n_60,A_Buffer_n_61,A_Buffer_n_62,A_Buffer_n_63}),
+        .\mem_reg[3][6]_0 (A_Buffer_n_14),
+        .\mem_reg[3][6]_1 (A_Buffer_n_19),
+        .\mem_reg[3][6]_2 (A_Buffer_n_29),
+        .\mem_reg[3][6]_3 ({A_Buffer_n_56,A_Buffer_n_57}),
+        .\mem_reg[3][6]_4 ({A_Buffer_n_58,A_Buffer_n_59}),
+        .o_out1__0_carry(B_Buffer_n_40),
+        .o_out1__0_carry_0(B_Buffer_n_39),
+        .o_out1__0_carry_1(B_Buffer_n_29),
+        .o_out1__0_carry_2(B_Buffer_n_43),
+        .o_out1__0_carry__0(B_Buffer_n_44),
+        .o_out1__0_carry__0_0(B_Buffer_n_45),
+        .o_out1__30_carry(B_Buffer_n_31),
+        .o_out1__30_carry__0(B_Buffer_n_32),
+        .o_out1__30_carry_i_4_0(B_Buffer_n_33),
+        .o_out1__59_carry(B_Buffer_n_20),
+        .o_out1__59_carry_0(B_Buffer_n_19),
+        .\rd_pntr_reg[0]_0 (A_Buffer_n_7),
+        .\rd_pntr_reg[0]_1 (PS),
+        .\rd_pntr_reg[1]_0 (rd_pntr0),
         .s_axis_data(s_axis_data[23:0]),
         .s_axis_valid(s_axis_valid),
-        .\wr_pntr_reg[0]_0 (wr_pntr0));
+        .\wr_pntr_reg[0]_0 (wr_pntr0),
+        .\wr_pntr_reg[1]_0 (A_Buffer_n_8));
   design_1_SystolicArrayAxiWrap_0_0_SystolicArray Array
        (.CO(Array_n_144),
-        .D(B12),
-        .DI({A_Buffer_n_30,B_Buffer_n_52,A_Buffer_n_31}),
-        .E(Array_n_155),
-        .\FSM_sequential_PS_reg[0] (\wr_pntr_reg[0] ),
-        .O({B_Buffer_n_48,B_Buffer_n_49,B_Buffer_n_50,B_Buffer_n_51}),
-        .PS(PS),
-        .S({A_Buffer_n_51,A_Buffer_n_52,A_Buffer_n_53,B_Buffer_n_47}),
+        .D(NS),
+        .DI({A_Buffer_n_32,B_Buffer_n_51,A_Buffer_n_33}),
+        .E(Array_n_156),
+        .\FSM_onehot_PS_reg[2] (\wr_pntr_reg[0] ),
+        .O({B_Buffer_n_47,B_Buffer_n_48,B_Buffer_n_49,B_Buffer_n_50}),
+        .Q({m_axis_valid,PS[2:1]}),
+        .S({A_Buffer_n_53,A_Buffer_n_54,A_Buffer_n_55,B_Buffer_n_46}),
         .\a21_buffer_reg[7]_0 (A21),
         .\a31_buffer1_reg[7]_0 (A31),
         .axi_clk(axi_clk),
-        .axi_rst_n(axi_rst_n),
+        .\b12_buffer_reg[7]_0 (B12),
         .\b13_buffer1_reg[7]_0 (B13),
         .m_axis_data(m_axis_data),
         .m_axis_ready(m_axis_ready),
         .o_out1__30_carry__1_i_4({Array_n_145,Array_n_146}),
         .o_out1__59_carry__0_i_8({Array_n_147,Array_n_148,Array_n_149}),
         .o_out1__59_carry__1_i_2(Array_n_150),
-        .o_out1__86_carry__0_i_3({A_Buffer_n_27,B_Buffer_n_39}),
-        .o_out1__86_carry__0_i_3_0({B_Buffer_n_55,B_Buffer_n_56}),
-        .o_out1__86_carry__0_i_4({A_Buffer_n_19,A_Buffer_n_20,B_Buffer_n_35,B_Buffer_n_36}),
-        .o_out1__86_carry__0_i_4_0({A_Buffer_n_56,A_Buffer_n_57,B_Buffer_n_58,B_Buffer_n_59}),
-        .o_out1__86_carry__0_i_6({A_Buffer_n_7,A_Buffer_n_8,A_Buffer_n_9,A_Buffer_n_10}),
-        .o_out1__86_carry__0_i_6_0({A_Buffer_n_58,A_Buffer_n_59,A_Buffer_n_60,A_Buffer_n_61}),
-        .o_out1__86_carry__1_i_3(B_Buffer_n_19),
-        .o_out1__86_carry__1_i_3_0(B_Buffer_n_64),
+        .o_out1__86_carry__0_i_3({A_Buffer_n_29,B_Buffer_n_38}),
+        .o_out1__86_carry__0_i_3_0({B_Buffer_n_54,B_Buffer_n_55}),
+        .o_out1__86_carry__0_i_4({A_Buffer_n_21,A_Buffer_n_22,B_Buffer_n_34,B_Buffer_n_35}),
+        .o_out1__86_carry__0_i_4_0({A_Buffer_n_58,A_Buffer_n_59,B_Buffer_n_57,B_Buffer_n_58}),
+        .o_out1__86_carry__0_i_6({A_Buffer_n_9,A_Buffer_n_10,A_Buffer_n_11,A_Buffer_n_12}),
+        .o_out1__86_carry__0_i_6_0({A_Buffer_n_60,A_Buffer_n_61,A_Buffer_n_62,A_Buffer_n_63}),
+        .o_out1__86_carry__1_i_3(B_Buffer_n_18),
+        .o_out1__86_carry__1_i_3_0(B_Buffer_n_63),
         .o_out1__86_carry__1_i_5({Array_n_151,Array_n_152,Array_n_153}),
-        .o_out1__86_carry__1_i_5_0({A_Buffer_n_17,B_Buffer_n_31}),
-        .o_out1__86_carry__1_i_5_1({B_Buffer_n_60,B_Buffer_n_61}),
-        .o_out1__86_carry_i_1({B_Buffer_n_22,A_Buffer_n_14,A_Buffer_n_15}),
-        .o_out1__86_carry_i_1_0({A_Buffer_n_0,B_Buffer_n_62,B_Buffer_n_63,A_Buffer_n_1}),
-        .o_out1__86_carry_i_8({A_Buffer_n_28,A_Buffer_n_29,B_Buffer_n_42,B_Buffer_n_43}),
-        .o_out1__86_carry_i_8_0({A_Buffer_n_54,A_Buffer_n_55,B_Buffer_n_53,B_Buffer_n_54}),
-        .\o_out[3]_i_2 ({B_Buffer_n_37,B_Buffer_n_38,A_Buffer_n_22}),
-        .\o_out[3]_i_2_0 ({A_Buffer_n_23,A_Buffer_n_24,B_Buffer_n_57,A_Buffer_n_25}),
-        .\o_out_reg[11] (Array_n_157),
-        .\o_out_reg[15] (Array_n_156),
-        .\o_out_reg[15]_0 ({B_Buffer_n_65,B_Buffer_n_66,B_Buffer_n_67}),
-        .\o_x_reg[1] ({A_Buffer_n_49,A_Buffer_n_50}),
-        .\o_x_reg[2] (A_Buffer_n_4),
-        .\o_x_reg[3] (A_Buffer_n_3),
-        .\o_x_reg[4] (A_Buffer_n_13),
-        .\o_x_reg[5] (A_Buffer_n_11),
-        .\o_x_reg[6] (A_Buffer_n_12),
-        .\o_x_reg[7] (A_Buffer_n_18),
-        .\o_y_reg[7] ({B_Buffer_n_23,B_Buffer_n_24,B_Buffer_n_25,B_Buffer_n_26,B_Buffer_n_27,B_Buffer_n_28,B_Buffer_n_29,B_Buffer_n_30}),
-        .p_0_in(p_0_in),
-        .s_axis_valid(s_axis_valid),
-        .s_axis_valid_0(Array_n_154));
+        .o_out1__86_carry__1_i_5_0({A_Buffer_n_19,B_Buffer_n_30}),
+        .o_out1__86_carry__1_i_5_1({B_Buffer_n_59,B_Buffer_n_60}),
+        .o_out1__86_carry_i_1({B_Buffer_n_21,A_Buffer_n_16,A_Buffer_n_17}),
+        .o_out1__86_carry_i_1_0({A_Buffer_n_2,B_Buffer_n_61,B_Buffer_n_62,A_Buffer_n_3}),
+        .o_out1__86_carry_i_8({A_Buffer_n_30,A_Buffer_n_31,B_Buffer_n_41,B_Buffer_n_42}),
+        .o_out1__86_carry_i_8_0({A_Buffer_n_56,A_Buffer_n_57,B_Buffer_n_52,B_Buffer_n_53}),
+        .\o_out[3]_i_2 ({B_Buffer_n_36,B_Buffer_n_37,A_Buffer_n_24}),
+        .\o_out[3]_i_2_0 ({A_Buffer_n_25,A_Buffer_n_26,B_Buffer_n_56,A_Buffer_n_27}),
+        .\o_out_reg[11] (Array_n_158),
+        .\o_out_reg[15] (Array_n_157),
+        .\o_out_reg[15]_0 ({B_Buffer_n_64,B_Buffer_n_65,B_Buffer_n_66}),
+        .\o_x_reg[1] ({A_Buffer_n_51,A_Buffer_n_52}),
+        .\o_x_reg[2] (A_Buffer_n_6),
+        .\o_x_reg[3] (A_Buffer_n_5),
+        .\o_x_reg[4] (A_Buffer_n_15),
+        .\o_x_reg[5] (A_Buffer_n_13),
+        .\o_x_reg[6] (A_Buffer_n_14),
+        .\o_x_reg[7] (A_Buffer_n_20),
+        .\o_y_reg[7] ({B_Buffer_n_22,B_Buffer_n_23,B_Buffer_n_24,B_Buffer_n_25,B_Buffer_n_26,B_Buffer_n_27,B_Buffer_n_28,B_Buffer_n_29}),
+        .p_0_in(p_0_in));
   design_1_SystolicArrayAxiWrap_0_0_InputBuffer_0 B_Buffer
        (.CO(Array_n_144),
-        .D(B12),
-        .DI(B_Buffer_n_52),
-        .E(wr_pntr0),
-        .\FSM_sequential_PS_reg[0] (B_Buffer_n_2),
-        .O({B_Buffer_n_48,B_Buffer_n_49,B_Buffer_n_50,B_Buffer_n_51}),
-        .PS(PS),
-        .S(B_Buffer_n_47),
-        .SR(Controller_n_2),
+        .DI(B_Buffer_n_51),
+        .E(rd_pntr0),
+        .O({B_Buffer_n_47,B_Buffer_n_48,B_Buffer_n_49,B_Buffer_n_50}),
+        .Q(PS[1:0]),
+        .S(B_Buffer_n_46),
+        .SR(Controller_n_5),
         .axi_clk(axi_clk),
         .m_axis_data(m_axis_data[14:12]),
-        .\mem_reg[0][7]_0 ({B_Buffer_n_23,B_Buffer_n_24,B_Buffer_n_25,B_Buffer_n_26,B_Buffer_n_27,B_Buffer_n_28,B_Buffer_n_29,B_Buffer_n_30}),
+        .\mem_reg[0][7]_0 ({B_Buffer_n_22,B_Buffer_n_23,B_Buffer_n_24,B_Buffer_n_25,B_Buffer_n_26,B_Buffer_n_27,B_Buffer_n_28,B_Buffer_n_29}),
+        .\mem_reg[2][15]_0 (B12),
         .\mem_reg[2][23]_0 (B13),
-        .\mem_reg[2][7]_0 (B_Buffer_n_19),
-        .\mem_reg[2][7]_1 (B_Buffer_n_20),
-        .\mem_reg[2][7]_2 (B_Buffer_n_22),
-        .\mem_reg[2][7]_3 ({B_Buffer_n_62,B_Buffer_n_63}),
-        .\mem_reg[3][0]_0 (B_Buffer_n_44),
-        .\mem_reg[3][0]_1 (B_Buffer_n_45),
-        .\mem_reg[3][0]_2 (B_Buffer_n_46),
-        .\mem_reg[3][1]_0 (B_Buffer_n_39),
-        .\mem_reg[3][1]_1 (B_Buffer_n_40),
-        .\mem_reg[3][1]_2 ({B_Buffer_n_55,B_Buffer_n_56}),
-        .\mem_reg[3][2]_0 (B_Buffer_n_41),
-        .\mem_reg[3][2]_1 ({B_Buffer_n_42,B_Buffer_n_43}),
-        .\mem_reg[3][3]_0 (B_Buffer_n_34),
-        .\mem_reg[3][3]_1 ({B_Buffer_n_37,B_Buffer_n_38}),
-        .\mem_reg[3][3]_2 (B_Buffer_n_57),
-        .\mem_reg[3][4]_0 (B_Buffer_n_31),
-        .\mem_reg[3][4]_1 (B_Buffer_n_32),
-        .\mem_reg[3][4]_2 ({B_Buffer_n_53,B_Buffer_n_54}),
-        .\mem_reg[3][4]_3 ({B_Buffer_n_58,B_Buffer_n_59}),
-        .\mem_reg[3][4]_4 ({B_Buffer_n_60,B_Buffer_n_61}),
-        .\mem_reg[3][5]_0 (B_Buffer_n_33),
-        .\mem_reg[3][5]_1 ({B_Buffer_n_35,B_Buffer_n_36}),
-        .\mem_reg[3][6]_0 (B_Buffer_n_21),
-        .\mem_reg[3][6]_1 (B_Buffer_n_64),
-        .o_out1__0_carry(A_Buffer_n_16),
-        .o_out1__0_carry__0(A_Buffer_n_2),
-        .o_out1__0_carry__0_0(A_Buffer_n_4),
-        .o_out1__0_carry__0_1(A_Buffer_n_13),
-        .o_out1__0_carry__0_2(A_Buffer_n_32),
-        .o_out1__0_carry__0_i_5(A_Buffer_n_18),
-        .o_out1__0_carry__0_i_6(A_Buffer_n_12),
-        .o_out1__0_carry__0_i_7_0(A_Buffer_n_11),
-        .o_out1__0_carry_i_4(A_Buffer_n_3),
-        .o_out1__30_carry__0(A_Buffer_n_21),
-        .o_out1__30_carry__0_0(A_Buffer_n_26),
-        .o_out1__59_carry__1({B_Buffer_n_65,B_Buffer_n_66,B_Buffer_n_67}),
+        .\mem_reg[2][4]_0 ({B_Buffer_n_52,B_Buffer_n_53}),
+        .\mem_reg[2][4]_1 ({B_Buffer_n_57,B_Buffer_n_58}),
+        .\mem_reg[2][7]_0 (B_Buffer_n_18),
+        .\mem_reg[2][7]_1 (B_Buffer_n_19),
+        .\mem_reg[2][7]_2 (B_Buffer_n_21),
+        .\mem_reg[2][7]_3 ({B_Buffer_n_61,B_Buffer_n_62}),
+        .\mem_reg[3][0]_0 (B_Buffer_n_43),
+        .\mem_reg[3][0]_1 (B_Buffer_n_44),
+        .\mem_reg[3][0]_2 (B_Buffer_n_45),
+        .\mem_reg[3][1]_0 (B_Buffer_n_38),
+        .\mem_reg[3][1]_1 (B_Buffer_n_39),
+        .\mem_reg[3][1]_2 ({B_Buffer_n_54,B_Buffer_n_55}),
+        .\mem_reg[3][2]_0 (B_Buffer_n_40),
+        .\mem_reg[3][2]_1 ({B_Buffer_n_41,B_Buffer_n_42}),
+        .\mem_reg[3][3]_0 (B_Buffer_n_33),
+        .\mem_reg[3][3]_1 ({B_Buffer_n_36,B_Buffer_n_37}),
+        .\mem_reg[3][3]_2 (B_Buffer_n_56),
+        .\mem_reg[3][4]_0 (B_Buffer_n_30),
+        .\mem_reg[3][4]_1 (B_Buffer_n_31),
+        .\mem_reg[3][4]_2 ({B_Buffer_n_59,B_Buffer_n_60}),
+        .\mem_reg[3][5]_0 (B_Buffer_n_32),
+        .\mem_reg[3][5]_1 ({B_Buffer_n_34,B_Buffer_n_35}),
+        .\mem_reg[3][6]_0 (B_Buffer_n_20),
+        .\mem_reg[3][6]_1 (B_Buffer_n_63),
+        .o_out1__0_carry(A_Buffer_n_18),
+        .o_out1__0_carry__0(A_Buffer_n_4),
+        .o_out1__0_carry__0_0(A_Buffer_n_6),
+        .o_out1__0_carry__0_1(A_Buffer_n_15),
+        .o_out1__0_carry__0_2(A_Buffer_n_34),
+        .o_out1__0_carry__0_i_5(A_Buffer_n_20),
+        .o_out1__0_carry__0_i_6(A_Buffer_n_14),
+        .o_out1__0_carry__0_i_7_0(A_Buffer_n_13),
+        .o_out1__0_carry_i_4(A_Buffer_n_5),
+        .o_out1__30_carry__0(A_Buffer_n_23),
+        .o_out1__30_carry__0_0(A_Buffer_n_28),
+        .o_out1__59_carry__1({B_Buffer_n_64,B_Buffer_n_65,B_Buffer_n_66}),
         .o_out1__86_carry__1({Array_n_145,Array_n_146}),
         .o_out1__86_carry__1_0({Array_n_147,Array_n_148,Array_n_149}),
         .o_out1__86_carry__1_1(Array_n_150),
-        .\o_out_reg[15] (Array_n_157),
+        .\o_out_reg[15] (Array_n_158),
         .\o_out_reg[15]_0 ({Array_n_151,Array_n_152,Array_n_153}),
-        .\o_out_reg[15]_1 (Array_n_156),
-        .\rd_pntr_reg[0]_0 (rd_pntr0),
+        .\o_out_reg[15]_1 (Array_n_157),
+        .\rd_pntr_reg[0]_0 (A_Buffer_n_8),
         .s_axis_data(s_axis_data[47:24]),
-        .s_axis_ready(A_Buffer_n_5),
+        .s_axis_ready(A_Buffer_n_7),
         .s_axis_valid(s_axis_valid),
-        .\wr_pntr_reg[0]_0 (\wr_pntr_reg[0] ));
+        .\wr_pntr_reg[0]_0 (\wr_pntr_reg[0] ),
+        .\wr_pntr_reg[1]_0 (wr_pntr0));
   design_1_SystolicArrayAxiWrap_0_0_ArrayController Controller
-       (.\FSM_sequential_PS_reg[0]_0 (Array_n_154),
-        .PS(PS),
-        .SR(Controller_n_2),
+       (.D(NS),
+        .\FSM_onehot_PS_reg[1]_0 (wr_pntr0),
+        .Q({m_axis_valid,PS}),
+        .SR(Controller_n_5),
         .axi_clk(axi_clk),
         .axi_rst_n(axi_rst_n),
         .m_axis_ready(m_axis_ready),
-        .m_axis_valid(m_axis_valid),
-        .\o_out_reg[0] (\wr_pntr_reg[0] ),
+        .\mem_reg[0][23] (wr_pntr),
         .p_0_in(p_0_in),
-        .s_axis_valid(s_axis_valid));
+        .s_axis_valid(s_axis_valid),
+        .s_axis_valid_0(Controller_n_6),
+        .\wr_pntr_reg[1] (\wr_pntr_reg[0] ));
 endmodule
 `ifndef GLBL
 `define GLBL

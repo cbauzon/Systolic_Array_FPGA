@@ -32,3 +32,5 @@ platform clean
 platform active {systolic_array_platform}
 platform config -updatehw {/home/cj/vivado_projects/systolic_array/systolic_array_project/design_1_wrapper.xsa}
 platform generate
+platform config -updatehw {/home/cj/vivado_projects/systolic_array/systolic_array_project/design_1_wrapper.xsa}
+platform generate -domains 

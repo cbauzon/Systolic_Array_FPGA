@@ -188,17 +188,17 @@
 						"AWCACHE": { "actual": "S01_AXI_awcache[3:0]"},
 						"AWLEN": { "actual": "S01_AXI_awlen[7:0]"},
 						"AWPROT": { "actual": "S01_AXI_awprot[2:0]"},
-						"AWREADY": { "actual": "S01_AXI_awready[0:0]"},
+						"AWREADY": { "actual": "S01_AXI_awready"},
 						"AWSIZE": { "actual": "S01_AXI_awsize[2:0]"},
-						"AWVALID": { "actual": "S01_AXI_awvalid[0:0]"},
-						"BREADY": { "actual": "S01_AXI_bready[0:0]"},
+						"AWVALID": { "actual": "S01_AXI_awvalid"},
+						"BREADY": { "actual": "S01_AXI_bready"},
 						"BRESP": { "actual": "S01_AXI_bresp[1:0]"},
-						"BVALID": { "actual": "S01_AXI_bvalid[0:0]"},
+						"BVALID": { "actual": "S01_AXI_bvalid"},
 						"WDATA": { "actual": "S01_AXI_wdata[31:0]"},
-						"WLAST": { "actual": "S01_AXI_wlast[0:0]"},
-						"WREADY": { "actual": "S01_AXI_wready[0:0]"},
+						"WLAST": { "actual": "S01_AXI_wlast"},
+						"WREADY": { "actual": "S01_AXI_wready"},
 						"WSTRB": { "actual": "S01_AXI_wstrb[3:0]"},
-						"WVALID": { "actual": "S01_AXI_wvalid[0:0]"}
+						"WVALID": { "actual": "S01_AXI_wvalid"}
 					}
 				},
 				"/axi_mem_intercon/m00_couplers/M_AXI": {
