@@ -25,7 +25,7 @@ module ArrayController(
 /* STATE MACHINE */
 typedef enum {WAIT, FILL, PROCESS, OUT} states;
 
-logic [1:0] PS, NS;
+states PS, NS;
 
 // sequential FSM logic
 always_ff @(posedge i_clk) begin
@@ -52,6 +52,7 @@ always_comb begin
 
             if (s_axis_valid && !buff_is_full) begin
                 buff_wr = 1;
+                buff_rst_n = 1;
                 NS = FILL;
             end
             else NS = WAIT;
@@ -63,13 +64,16 @@ always_comb begin
                 NS = FILL;
             end
             else if (buff_is_full) begin
+                arr_rst_n = 0;
+                buff_wr = 0;
+
                 NS = PROCESS;
             end
             else begin
+                buff_wr = 0;
                 NS = WAIT;
             end
 
-            buff_wr = 0;
 
         end
 
@@ -80,12 +84,14 @@ always_comb begin
                 NS = PROCESS;
             end
             else if (!arr_C_valid) begin
-                NS = PROCESS;
+            	buff_rd = 0;
+				NS = PROCESS;
             end
             else begin
+            	buff_rd = 0;
+				
                 NS = OUT;
             end        
-            buff_rd = 0;
             
         end
 
@@ -97,6 +103,7 @@ always_comb begin
                 NS = OUT;
             end
             else begin
+				buff_rst_n = 0;
                 NS = WAIT;
             end
         end

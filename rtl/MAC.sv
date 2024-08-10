@@ -60,6 +60,7 @@ always @(posedge i_clk) begin
         o_out <= out_d;
 
         if (o_transaction_cnt != 7) begin
+            
             o_transaction_cnt <= o_transaction_cnt + 1;
         end
     end
