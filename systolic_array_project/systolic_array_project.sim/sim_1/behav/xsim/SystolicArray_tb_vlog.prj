@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  --include "../../../../systolic_array_project.gen/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../systolic_array_project.gen/sources_1/bd/design_1/ipshared/6b2b/hdl" --include "../../../../systolic_array_project.gen/sources_1/bd/design_1/ipshared/434f/hdl" --include "/home/cj/tools/Xilinx/Vivado/2023.2/data/xilinx_vip/include" \
+"../../../../../rtl/MAC.sv" \
+"../../../../../rtl/SystolicArray.sv" \
+"../../../../../testbenches/SystolicArray_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

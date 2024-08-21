@@ -123,3 +123,16 @@ timestamp=[2024-08-10 01:49:13], mode=BUILD, duration=0:00:00.330, duration_ms=3
 timestamp=[2024-08-10 01:49:22], mode=BUILD, duration=0:00:04.934, duration_ms=4934, data={name=systolic_array_app_system, configuration=Debug, clean_build=false}
 timestamp=[2024-08-10 01:53:53], mode=BUILD, duration=0:00:00.328, duration_ms=328, data={name=systolic_array_app, configuration=Debug, clean_build=false}
 timestamp=[2024-08-10 01:59:04], mode=BUILD, duration=0:00:00.328, duration_ms=328, data={name=systolic_array_app, configuration=Debug, clean_build=false}
+timestamp=[2024-08-10 02:16:44], mode=WORKBENCH_START, duration=0:00:03.408, duration_ms=3408, data={}
+timestamp=[2024-08-10 02:16:44], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.185, duration_ms=185, data={}
+timestamp=[2024-08-10 02:16:45], mode=WORKBENCH_UI_INIT, duration=0:00:00.396, duration_ms=396, data={editors_count=3, platform_editors_count=2, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,systolic_array_app,systolic_array_app_system,systolic_array_platform}
+timestamp=[2024-08-10 02:19:37], mode=PLATFORM_GENERATION, duration=0:00:13.859, duration_ms=13859, data={name=systolic_array_platform}
+timestamp=[2024-08-10 02:19:42], mode=BUILD, duration=0:00:00.335, duration_ms=335, data={name=systolic_array_app, configuration=Debug, clean_build=false}
+timestamp=[2024-08-10 02:20:15], mode=BUILD, duration=0:00:00.234, duration_ms=234, data={name=systolic_array_app, configuration=Debug, clean_build=false}
+timestamp=[2024-08-10 02:20:21], mode=BUILD, duration=0:00:04.980, duration_ms=4980, data={name=systolic_array_app_system, configuration=Debug, clean_build=false}
+timestamp=[2024-08-10 02:24:11], mode=BUILD, duration=0:00:00.325, duration_ms=325, data={name=systolic_array_app, configuration=Debug, clean_build=false}
+timestamp=[2024-08-10 02:24:47], mode=BUILD, duration=0:00:00.224, duration_ms=224, data={name=systolic_array_app, configuration=Debug, clean_build=false}
+timestamp=[2024-08-10 02:24:53], mode=BUILD, duration=0:00:04.980, duration_ms=4980, data={name=systolic_array_app_system, configuration=Debug, clean_build=false}
+timestamp=[2024-08-15 16:45:11], mode=WORKBENCH_START, duration=0:00:03.488, duration_ms=3488, data={}
+timestamp=[2024-08-15 16:45:12], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.218, duration_ms=218, data={}
+timestamp=[2024-08-15 16:45:12], mode=WORKBENCH_UI_INIT, duration=0:00:00.417, duration_ms=417, data={editors_count=4, platform_editors_count=3, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,systolic_array_app,systolic_array_app_system,systolic_array_platform}

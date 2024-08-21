@@ -34,3 +34,5 @@ platform config -updatehw {/home/cj/vivado_projects/systolic_array/systolic_arra
 platform generate
 platform config -updatehw {/home/cj/vivado_projects/systolic_array/systolic_array_project/design_1_wrapper.xsa}
 platform generate -domains 
+platform generate -domains standalone_domain,zynq_fsbl 
+platform active {systolic_array_platform}
